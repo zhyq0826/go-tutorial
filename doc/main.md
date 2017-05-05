@@ -78,3 +78,20 @@ var a = 0
 
 ptr = &a  //指针赋值
 ```
+
+## string
+
+go 中字符串是不可变的。
+
+go 中的字符串不同于 c，不是字符的序列。
+
+go 中有单独的字符序列是 rune 数组。
+
+多行字符串注意 + 号的位置。
+
+
+## control structure
+
+go 的控制结构少，有 if、for switch。
+
+if、for 接受初始化语句。
