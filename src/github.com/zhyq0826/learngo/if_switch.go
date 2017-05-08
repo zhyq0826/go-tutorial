@@ -19,7 +19,7 @@ func main() {
 		grade = "A"
 	case 80:
 		grade = "B"
-	case 70, 60, 50:
+	case 70, 60, 50: // , 隔开的列表
 		grade = "C"
 	default:
 		grade = "D"

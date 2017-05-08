@@ -109,3 +109,14 @@ go 没有 while 语句，可以使用 for 替代。
 
 for 有 break 和 continue 语句，break 可以指定标签来跳出哪个循环
 
+## range 
+
+range 对 array、slice、map 的用法
+
+## array
+
+声明 array 必须要有个数说明。
+
+slice 是一个指向底层 array 的类型，即使从新的 slice 创建 slice，两个 slice 也是指向同一个 array
+
+append() 可以向 slice 追加元素并且自动扩容，扩容之后会返回新的底层 array，所以调用
