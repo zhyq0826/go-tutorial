@@ -90,8 +90,22 @@ go 中有单独的字符序列是 rune 数组。
 多行字符串注意 + 号的位置。
 
 
-## control structure
+## if switch
 
 go 的控制结构少，有 if、for switch。
 
 if、for 接受初始化语句。
+
+switch 不同于其他语言，不需要 break，因为匹配失败之后不会继续向下执行，可以用 fallthrough。
+
+if 的大括号必须在同一行。
+
+
+## goto for
+
+go 有 goto 语句，标签名是大小写敏感的。
+
+go 没有 while 语句，可以使用 for 替代。
+
+for 有 break 和 continue 语句，break 可以指定标签来跳出哪个循环
+
