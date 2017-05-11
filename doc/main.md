@@ -119,8 +119,22 @@ range 对 array、slice、map 的用法
 
 slice 是一个指向底层 array 的类型，即使从新的 slice 创建 slice，两个 slice 也是指向同一个 array
 
-append() 可以向 slice 追加元素并且自动扩容，扩容之后会返回新的底层 array，所以调用
+append() 可以向 slice 追加元素并且自动扩容，扩容之后会返回新的底层 array，所以调用 append 可能会产生新的底层 array。
 
 
 ## function
 
+函数的定义
+```
+func (p mytype) functioname(q int) (r,s int) {return 0, 0}
+```
+
+socpe 遵循局部覆盖全部的原则。
+
+如果函数有返回值，那 return 语句是必须的。
+
+defer 可以让函数的执行延迟，记住必须是函数的执行，匿名函数屁股后面一定是调用符号()。
+
+函数可接受变参，参数类型一致的参数列表，其实是一个 slice。
+
+函数可以作为值来使用，可以把函数赋值给一个变量。

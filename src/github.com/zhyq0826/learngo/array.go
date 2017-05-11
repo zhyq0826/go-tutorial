@@ -36,7 +36,7 @@ func main() {
 
 	s1 := append(slice, 5)
 	s2 := append(slice, 5, 5, 5)
-	// s3 := append(slice, arr...)
+	// s3 := append(slice, arry...)
 	print(s1)
 	print(s2)
 	// print(s3)
