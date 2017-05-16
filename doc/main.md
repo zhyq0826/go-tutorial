@@ -138,3 +138,21 @@ defer 可以让函数的执行延迟，记住必须是函数的执行，匿名�
 函数可接受变参，参数类型一致的参数列表，其实是一个 slice。
 
 函数可以作为值来使用，可以把函数赋值给一个变量。
+
+## package
+
+go package 是 go 源文件的 package 名称，和 源文件所在 directory 其实是没有关系的，不过一般意义上 path 的最后一个元素和源文件的 package 
+名称相同。
+
+By convention, the package name is the same as the last element of the import path. For instance, the "math/rand" package comprises files that begin with the statement package rand
+
+
+像 Python 一样，导入可单行，也可分组。
+
+package 默认只导出首字母大写的变量、函数，小写不导出，也就是可以使用那些头字母是大写的函数。
+
+包可以有别名，别名的主要作用是避免冲突。
+
+go 标准包在 goroot 路径的 pkg 下，第三方包在 gopath 的 pkg 下，执行 go get 获取第三方包将把包安装在 gopath 中。
+
+go package 中有 init 函数，用于在包导入时执行，如果仅仅只想执行 package 的 init 函数，可以 `import _ "fmt"`。

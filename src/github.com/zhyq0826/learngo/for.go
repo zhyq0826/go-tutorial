@@ -27,6 +27,11 @@ Here:
 		i++
 	}
 
+	j := 0
+	for j < 5 {
+		j++
+	}
+
 	// while true
 	// for {}
 
