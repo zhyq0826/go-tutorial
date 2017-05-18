@@ -156,3 +156,8 @@ package 默认只导出首字母大写的变量、函数，小写不导出，也
 go 标准包在 goroot 路径的 pkg 下，第三方包在 gopath 的 pkg 下，执行 go get 获取第三方包将把包安装在 gopath 中。
 
 go package 中有 init 函数，用于在包导入时执行，如果仅仅只想执行 package 的 init 函数，可以 `import _ "fmt"`。
+
+在 package 所在的文件目录执行 go install 将安装 package。
+
+## pointer 
+
