@@ -34,7 +34,7 @@ func main() {
 		fmt.Println("You got other")
 	}
 
-	//接受初始化语句
+	//if 接受初始化语句
 	if a := rand.Intn(100); a > 5 {
 		fmt.Println(a)
 	} else if a < 5 {

@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	var arr [10]int
+	var arr [10]int //默认初始化为0值
 	arr[0] = 1
 	arr[1] = 2
 	for i := 0; i < len(arr); i++ {
@@ -26,18 +26,21 @@ func main() {
 		}
 	}
 
-	sl := make([]int, 10)
-	print(len(sl))
+	d := [...]int{
+		1,
+		2,
+		3,
+		4, // comma 是必须的
+	}
 
-	slice := arr[0:5]
-	print(cap(slice)) //cap 指向的实际的底层数组的长度 10
-	print(len(slice)) //len 只表示当前类型的长度 5
-	// slice[11] = 10 runtime error: index out of range slice 实际指向底层的 array
+	for _, value := range d {
+		println(value)
+	}
 
-	s1 := append(slice, 5)
-	s2 := append(slice, 5, 5, 5)
-	// s3 := append(slice, arry...)
-	print(s1)
-	print(s2)
-	// print(s3)
+	//var arr [5]int{1, 2, 3, 4, 5} 没有这种声明和初始化方式
+	e := [5]int{1, 2, 3, 4, 5}
+	for _, value := range e {
+		println(value)
+	}
+
 }

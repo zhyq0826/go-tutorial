@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
 	m := map[string]int{
 		"a": 1,
@@ -8,15 +12,27 @@ func main() {
 	}
 
 	for _, v := range m {
-		print(v)
+		fmt.Println(v)
 	}
 
 	v, ok := m["a"]
-	print(v)
-	print(ok)
+	fmt.Println(v)
+	fmt.Println(ok) //true
 
 	delete(m, "c")
+	//不存在的值返回类型的 0 值
 	v1, ok1 := m["c"]
-	print(v1)
-	print(ok1)
+	fmt.Println(v1)  // 0
+	fmt.Println(ok1) // false
+
+	a := make(map[string]int)
+	a["a"] = 1
+	a["b"] = 1
+	fmt.Println(a)
+
+	if _, ok := m["d"]; ok {
+		fmt.Println("d exists")
+	} else {
+		fmt.Println("d not exists")
+	}
 }

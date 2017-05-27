@@ -36,8 +36,8 @@ go types can be classifed as four category
 
 **numeric type**
 
-- byte
-- rune
+- byte uint8
+- rune uint32
 - unit
 - int
 - uintptr
@@ -83,11 +83,22 @@ ptr = &a  //指针赋值
 
 go 中字符串是不可变的。
 
-go 中的字符串不同于 c，不是字符的序列。
+go 中的字符串不同于 c，不是字符的序列，而是一个个 byte，直接输出 s[0] 是 byte 代表的 10 进制数
 
 go 中有单独的字符序列是 rune 数组。
 
 多行字符串注意 + 号的位置。
+
+## scope
+
+go 是 block scope language
+
+
+## slice 
+
+slice 是 array 的一段，唯一不同的是可变。
+
+创建 slice 可以用 make，array[start:end]
 
 
 ## if switch
