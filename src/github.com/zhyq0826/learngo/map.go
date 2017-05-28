@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	// 字面量定义
 	m := map[string]int{
 		"a": 1,
 		"b": 2,
@@ -24,7 +25,7 @@ func main() {
 	v1, ok1 := m["c"]
 	fmt.Println(v1)  // 0
 	fmt.Println(ok1) // false
-
+	//make 定义
 	a := make(map[string]int)
 	a["a"] = 1
 	a["b"] = 1

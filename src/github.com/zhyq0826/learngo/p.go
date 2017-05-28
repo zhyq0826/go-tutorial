@@ -22,10 +22,15 @@ type ThirdNameAge struct {
 func main() {
 	var p *int //声明一个指针
 	fmt.Printf("%v", p)
+	println("")          //(nil)
+	fmt.Printf("%#v", p) //(*int)(nil)
 	println("")
-	fmt.Printf("%#v", p)
+	fmt.Printf("%T", p) //*int
 	println("")
-	fmt.Printf("%T", p)
+
+	ptr := new(int)
+	*ptr = 1
+	fmt.Println("ptr", *ptr) //1
 
 	var i int
 	p = &i //获取 i 的地址

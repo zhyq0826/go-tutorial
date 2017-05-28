@@ -1,23 +1,26 @@
 package main
 
-func main() {
-	println(sum_two(10, 1))
-	x, y := sum_three(1, 2, 3)
-	println(x, y)
-	println(sum(1, 1))
-	println(return_name(1, 1))
-	println(deff())
-	func_arg(1, 2, 3, 4, 5)
+import (
+	"fmt"
+)
 
+func main() {
+	fmt.Println(sum1(10, 1))
+	fmt.Println(sum2(10, 1))
+	fmt.Println(sum3(10, 1))
+	fmt.Println(sum4(1, 2))
+	fmt.Println(sum5(1, 2))
+	fmt.Println(deff())
+	fmt.Println(sum6(1, 2, 3, 4, 5))
 	//函数作为值
 	func_a := func() {
-		println("a")
+		fmt.Println("a")
 	}
-
 	func_a()
 
+	//闭包
 	fun_b := plus_x(1)
-	println(fun_b(2))
+	fmt.Println(fun_b(2))
 
 	var s stack
 	s.push(10)
@@ -29,23 +32,29 @@ func main() {
 	}
 }
 
-//只有一个返回值
-func sum_two(x, y int) int {
+//函数 func name(name type, name type) type {}
+func sum1(x int, y int) int {
 	return x + y
 }
 
-//多个返回值
-func sum_three(x int, y int, z int) (int, int) {
-	return x + y, y + z
+//函数 func name(name, name type) type {}
+func sum2(x, y int) int {
+	return x + y
 }
 
-func sum(x, y int) int {
-	return 0 // return 是必须的
-}
-
-//带名称的返回值
-func return_name(x, y int) (z int) {
+//name return value
+func sum3(x, y int) (z int) {
 	z = x + y
+	return
+}
+
+func sum4(x, y int) (int, int) {
+	return x, y
+}
+
+func sum5(x, y int) (z int, u int) {
+	z = x
+	u = y
 	return
 }
 
@@ -59,10 +68,12 @@ func deff() (ret int) {
 }
 
 //变参
-func func_arg(arg ...int) {
+func sum6(arg ...int) int {
+	z := 0
 	for _, n := range arg {
-		print(n)
+		z += n
 	}
+	return z
 }
 
 //闭包，使用 parent scope 中的变量
