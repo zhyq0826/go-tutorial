@@ -28,7 +28,7 @@ func main() {
 	fmt.Printf("%T", p) //*int
 	println("")
 
-	ptr := new(int)
+	ptr := new(int) //使用 new 声明一个指针
 	*ptr = 1
 	fmt.Println("ptr", *ptr) //1
 

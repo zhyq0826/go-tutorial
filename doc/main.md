@@ -98,7 +98,9 @@ go 是 block scope language
 
 slice 是 array 的一段，唯一不同的是可变。
 
-创建 slice 可以用 make，array[start:end]
+创建 slice 可以用 make，array[start:end]。
+
+append 的返回值必须要接住，否则报：append(class, t) evaluated but not used 
 
 
 ## if switch
@@ -185,3 +187,56 @@ new(T) 分配了一个零值填充的 T 类型的空间，并且返回其地址�
 make(T, args) 返回的是一个 T 类型。
 
 type 用来创建自定义类型。
+
+## embed type go
+
+go 通过 embed type 来完成属性和方法的继承，go 中没有显示的继承，把一个类型嵌入另一个类型作为 field，而且可以是匿名 field 可以达到继承另一个 type 属性的目的。
+
+被嵌入的 type 属性不能直接通过字面量进行初始化，必须是被嵌入的类型才可以。
+
+```golang
+t := Teacher{Person{name: "teacher"}}
+```
+
+## struct
+
+go 的方法传值默认是按值传递，不能被修改，要想被修改必须要按照引用传递，所有 struct 的方法必须是 *p。
+
+声明 struct 对象有 new、字面量、声明等不同的方法。
+
+var c Circle, c := new(Circle) c = Circle{x:1,y:1}。
+
+只有 new 返回的是 struct 指针，其他两种声明方式都不是。
+
+## interface
+
+go 的 interface 定义了一些列行为来达到多态。
+通过实现 interface 的方法可以让不同的类型抽象成一个共同的基类。
+实现 interface 的方法 receiver 必须是 pointer， 不能是 value。
+
+```golang
+//interface 定义了行为
+type People interface {
+    sayHello()
+}
+
+type Person struct {
+    name string
+}
+
+func (p *Person) sayHello() {
+    fmt.Println(p.name + " hello")
+}
+
+type Student struct {
+    Person //匿名 field
+}
+
+type Teacher struct {
+    Person
+}
+
+t := new(Teacher) 
+t1 := Teacher{Person{name: "teacher1"}} //嵌入类型的属性必须通过嵌入类型进行初始化
+```
+t 实现了 people 的方法 sayHello，t1 并没有
