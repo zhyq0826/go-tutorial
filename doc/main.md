@@ -240,3 +240,19 @@ t := new(Teacher)
 t1 := Teacher{Person{name: "teacher1"}} //嵌入类型的属性必须通过嵌入类型进行初始化
 ```
 t 实现了 people 的方法 sayHello，t1 并没有
+
+
+## channel
+
+channel 用来在 goroutine 间通信。
+
+当尝试向 channel 发送数据，channel 必须等待 channel 的接收端是准备好的状态，channel 是用阻塞完成的。
+
+channel 是有方向的 c chan<- string, c <-chan string。
+
+
+## select 
+
+select 类似于 switch case，select 会选择当前第一个 ready 状态的 channel，如果有多个同时准备好，会随机选一个，如果没有则阻塞直到有一个准备好为之。
+
+select 可以有默认的 channel，如果在一定时间内没有任何 channel，select 将执行默认 case。
