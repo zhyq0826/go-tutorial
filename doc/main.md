@@ -211,8 +211,8 @@ var c Circle, c := new(Circle) c = Circle{x:1,y:1}。
 ## interface
 
 go 的 interface 定义了一些列行为来达到多态。
-通过实现 interface 的方法可以让不同的类型抽象成一个共同的基类。
-实现 interface 的方法 receiver 必须是 pointer， 不能是 value。
+通过实现 interface 的方法可以让不同的类型抽象成一个共同的基类，一个 struct 拥有 interface 的方法表示 struct 实现了 interface。
+实现 interface 的方法 receiver 必须是 pointer， 不能是 value，因而 make 之后的值可以直接调用，字面量的值必须是 &value
 
 ```golang
 //interface 定义了行为
