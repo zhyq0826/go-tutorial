@@ -1,7 +1,12 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
 	var arr [10]int //默认初始化为0值
+	fmt.Printf("%T", arr)
 	arr[0] = 1
 	arr[1] = 2
 	for i := 0; i < len(arr); i++ {

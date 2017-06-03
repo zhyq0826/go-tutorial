@@ -5,6 +5,12 @@ import (
 )
 
 func main() {
+	var define_m map[string]int
+
+	fmt.Println(define_m)
+	fmt.Printf("%T", define_m)
+	fmt.Printf("%V", define_m)
+
 	// 字面量定义
 	m := map[string]int{
 		"a": 1,

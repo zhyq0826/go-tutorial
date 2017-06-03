@@ -5,9 +5,17 @@ import (
 )
 
 func main() {
+	//字面量 slice
+	var sl_literal []int
+
+	//字面量创建 slice
+	fmt.Println(sl_literal)
+	fmt.Printf("%T", sl_literal)
+	fmt.Println("")
 
 	// 使用 make 创建 slice
 	sl := make([]int, 5) //创建一个 length 为 5 的 slice，slice 的底层总是指向一个 array
+	fmt.Printf("%T", sl)
 	fmt.Println(len(sl))
 	fmt.Println(cap(sl))
 

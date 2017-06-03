@@ -100,6 +100,8 @@ slice 是 array 的一段，唯一不同的是可变。
 
 创建 slice 可以用 make，array[start:end]。
 
+直接创建 slice: var sl []int，不指定长度。
+
 append 的返回值必须要接住，否则报：append(class, t) evaluated but not used 
 
 
