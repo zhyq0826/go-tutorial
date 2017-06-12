@@ -31,3 +31,7 @@
 - https://katcipis.github.io/2016/09/17/fun-with-nil-interfaces.html
 
 > If you want an interface value of nil, there's only two ways to get it, either assign it to 'nil' explicitly, or use the zero value of a variable of that type, i.e. var myErr error.
+
+## gotchas-and-common-mistakes-in-go-golang
+
+http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
