@@ -35,3 +35,8 @@
 ## gotchas-and-common-mistakes-in-go-golang
 
 http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
+
+## go project structer
+
+
+- https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project
