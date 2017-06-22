@@ -40,3 +40,18 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 
 
 - https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project
+
+## web
+
+- https://gowebexamples.github.io/
+- https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md
+
+
+## web socket
+
+- https://dinosaurscode.xyz/go/2016/07/17/go-websockets-tutorial/
+- http://www.alexedwards.net/blog/golang-response-snippets#json
+
+## go standlibary
+
+- https://github.com/polaris1119/The-Golang-Standard-Library-by-Example
