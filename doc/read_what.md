@@ -43,7 +43,6 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 
 ## web
 
-- https://gowebexamples.github.io/
 - https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md
 
 
@@ -55,3 +54,15 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 ## go standlibary
 
 - https://github.com/polaris1119/The-Golang-Standard-Library-by-Example
+
+
+## go web examples
+
+- https://gowebexamples.github.io/
+
+## go examples
+
+- https://gobyexample.com/
+
+
+chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pdf-orienation=Landscape --pdf-margins=10,10,10,10
