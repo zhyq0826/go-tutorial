@@ -7,6 +7,9 @@
 ## interface
 
 - https://research.swtch.com/interfaces
+- http://jordanorelli.tumblr.com/post/32665860244/how-to-use-interfaces-in-go
+- https://gobyexample.com/interfaces
+- https://golang.org/doc/effective_go.html#interfaces
 
 ## type
 
@@ -65,4 +68,12 @@ http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 - https://gobyexample.com/
 
 
+## chrome pdf
 chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pdf-orienation=Landscape --pdf-margins=10,10,10,10
+
+
+## go defer
+
+- https://blog.golang.org/defer-panic-and-recover
+- https://www.goinggo.net/2013/06/understanding-defer-panic-and-recover.html
+

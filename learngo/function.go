@@ -5,13 +5,13 @@ import (
 )
 
 func main() {
-	fmt.Println(sum1(10, 1))
-	fmt.Println(sum2(10, 1))
-	fmt.Println(sum3(10, 1))
+	fmt.Println("sum1", sum1(10, 1))
+	fmt.Println("sum2", sum2(10, 1))
+	fmt.Println("sum3", sum3(10, 1))
 	fmt.Println(sum4(1, 2))
 	fmt.Println(sum5(1, 2))
-	fmt.Println(deff())
-	fmt.Println(sum6(1, 2, 3, 4, 5))
+	fmt.Println("deff", deff())
+	fmt.Println("sum6", sum6(1, 2, 3, 4, 5))
 	//函数作为值
 	func_a := func() {
 		fmt.Println("a")
@@ -61,6 +61,12 @@ func sum5(x, y int) (z int, u int) {
 //延迟执行的函数调用
 func deff() (ret int) {
 	defer func() {
+		fmt.Println("1 defer")
+		ret++
+	}()
+
+	defer func() {
+		fmt.Println("2 defer")
 		ret++
 	}()
 

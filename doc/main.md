@@ -1,4 +1,4 @@
-## datatype
+# datatype
 
 go types can be classifed as four category
 
@@ -43,7 +43,7 @@ go types can be classifed as four category
 - uintptr
 
 
-## variable 
+# variable 
 
 go 是类型置后的。
 
@@ -58,14 +58,14 @@ go 可以动态进行类型推断，如果有初始化值可以不必一开始�
 var variable_list optional_data_type
 
 
-## constant
+# constant
 
 常量在 go 中只能是 boolean、string、numerical。
 
 常量可以使用枚举、指定初始值、或者显式指定类型和初始值。
 
 
-## operator
+# operator
 
 go 中只能同类型的进行操作，不能混用，也就是不能用 int32 + int16
 
@@ -79,7 +79,7 @@ var a = 0
 ptr = &a  //指针赋值
 ```
 
-## string
+# string
 
 go 中字符串是不可变的。
 
@@ -89,23 +89,25 @@ go 中有单独的字符序列是 rune 数组。
 
 多行字符串注意 + 号的位置。
 
-## scope
+# scope
 
 go 是 block scope language
 
 
-## slice 
+# slice 
 
 slice 是 array 的一段，唯一不同的是可变。
 
-创建 slice 可以用 make，array[start:end]。
+创建 slice 可以用 make，array[start:end], []type 等方式
 
-直接创建 slice: var sl []int，不指定长度。
+不指定长度就是直接创建 slice: var sl []int。
 
-append 的返回值必须要接住，否则报：append(class, t) evaluated but not used 
+append 的返回值必须要接住，否则报：append(class, t) evaluated but not used。
+
+make([]int, 5) 表示创建长度为 5 被 0 值填充的一个 slice。
 
 
-## if switch
+# if switch
 
 go 的控制结构少，有 if、for switch。
 
@@ -116,7 +118,7 @@ switch 不同于其他语言，不需要 break，因为匹配失败之后不会�
 if 的大括号必须在同一行。
 
 
-## goto for
+# goto for
 
 go 有 goto 语句，标签名是大小写敏感的。
 
@@ -124,11 +126,11 @@ go 没有 while 语句，可以使用 for 替代。
 
 for 有 break 和 continue 语句，break 可以指定标签来跳出哪个循环
 
-## range 
+# range 
 
 range 对 array、slice、map 的用法
 
-## array
+# array
 
 声明 array 必须要有个数说明。
 
@@ -137,7 +139,7 @@ slice 是一个指向底层 array 的类型，即使从新的 slice 创建 slice
 append() 可以向 slice 追加元素并且自动扩容，扩容之后会返回新的底层 array，所以调用 append 可能会产生新的底层 array。
 
 
-## function
+# function
 
 函数的定义
 ```
@@ -148,15 +150,25 @@ socpe 遵循局部覆盖全部的原则。
 
 如果函数有返回值，那 return 语句是必须的。
 
-defer 可以让函数的执行延迟，记住必须是函数的执行，匿名函数屁股后面一定是调用符号()。
-
-defer 表示在函数执行完成之后在执行，所以 defer 可以用来恢复异常。
-
 函数可接受变参，参数类型一致的参数列表，其实是一个 slice。
 
 函数可以作为值来使用，可以把函数赋值给一个变量。
 
-## package
+# defer
+
+defer 在 go 中可以让函数延迟执行，主要用来做一些清理工作，比如 socket 的关闭，文件资源的释放，数据库的关闭等。
+
+defer 执行的必须是函数的执行，匿名函数屁股后面一定是调用符号()。
+
+defer 表示在包裹函数执行完成之后在执行，所以 defer 可以用来恢复异常，即 recover 在 defer 函数中使用才有意义。
+
+多个 defer 函数 是按照后进先出的顺序执行，是一个栈操作。
+
+函数 defer 时，被 defer 的函数调用的参数首先被 evaluated，也就是 defer 函数的参数是在 defer 时就执行固定的，即使这些参数在 defer 之后更改也没有影响。
+
+
+
+# package
 
 go package 是 go 源文件的 package 名称，和 源文件所在 directory 其实是没有关系的，不过一般意义上 path 的最后一个元素和源文件的 package 
 名称相同。
@@ -176,7 +188,7 @@ go package 中有 init 函数，用于在包导入时执行，如果仅仅只想
 
 在 package 所在的文件目录执行 go install 将安装 package。
 
-## pointer 
+# pointer 
 
 pointer 是指向某种类型的第一个地址，表示 memory 中的一个 address。
 
@@ -190,7 +202,7 @@ make(T, args) 返回的是一个 T 类型。
 
 type 用来创建自定义类型。
 
-## embed type go
+# embed type go
 
 go 通过 embed type 来完成属性和方法的继承，go 中没有显示的继承，把一个类型嵌入另一个类型作为 field，而且可以是匿名 field 可以达到继承另一个 type 属性的目的。
 
@@ -200,7 +212,7 @@ go 通过 embed type 来完成属性和方法的继承，go 中没有显示的�
 t := Teacher{Person{name: "teacher"}}
 ```
 
-## struct
+# struct
 
 go 的方法传值默认是按值传递，不能被修改，要想被修改必须要按照引用传递，所有 struct 的方法必须是 *p。
 
@@ -210,11 +222,18 @@ var c Circle, c := new(Circle) c = Circle{x:1,y:1}。
 
 只有 new 返回的是 struct 指针，其他两种声明方式都不是。
 
-## interface
+# interface
 
 go 的 interface 定义了一些列行为来达到多态。
-通过实现 interface 的方法可以让不同的类型抽象成一个共同的基类，一个 struct 拥有 interface 的方法表示 struct 实现了 interface。
-实现 interface 的方法 receiver 必须是 pointer， 不能是 value，因而 make 之后的值可以直接调用，字面量的值必须是 &value
+
+interface类型定义了一组方法，如果某个 struct 实现了某个接口的所有方法，则此对象就实现了此接口。
+
+
+任意的类型都实现了空interface(我们这样定义：interface{})，也就是包含0个method的interface。
+
+
+空interface(interface{})不包含任何的method，正因为如此，所有的类型都实现了空interface。空interface对于描述起不到任何的作用(因为它不包含任何的method），但是空interface在我们需要存储任意类型的数值的时候相当有用，因为它可以存储任意类型的数值。它有点类似于C语言的void*类型。
+
 
 ```golang
 //interface 定义了行为
@@ -244,7 +263,34 @@ t1 := Teacher{Person{name: "teacher1"}} //嵌入类型的属性必须通过嵌�
 t 实现了 people 的方法 sayHello，t1 并没有
 
 
-## channel
+## 推断 interface 中的值
+
+
+Go语言里面有一个语法，可以直接判断是否是该类型的变量： value, ok = element.(T) 这里value就是变量的值，ok是一个bool类型，element是interface变量，T是断言的类型。
+
+
+```go
+if value, ok := element.(int); ok {
+    
+}
+
+```
+
+switch element.(type) 判断
+
+
+```
+
+switch value := element.(type){
+    case int:
+        fmt.Println("")
+    default:
+        fmt.Println("")
+}
+
+```
+
+# channel
 
 channel 用来在 goroutine 间通信。
 
@@ -253,7 +299,7 @@ channel 用来在 goroutine 间通信。
 channel 是有方向的 c chan<- string, c <-chan string。
 
 
-## select 
+# select 
 
 select 类似于 switch case，select 会选择当前第一个 ready 状态的 channel，如果有多个同时准备好，会随机选一个，如果没有则阻塞直到有一个准备好为之。
 
