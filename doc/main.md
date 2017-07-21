@@ -263,6 +263,19 @@ t1 := Teacher{Person{name: "teacher1"}} //嵌入类型的属性必须通过嵌�
 t 实现了 people 的方法 sayHello，t1 并没有
 
 
+This is not pure duck typing, because when possible the Go compiler will statically check whether the type implements the interface. However, Go does have a purely dynamic aspect, in that you can convert from one interface type to another. In the general case, that conversion is checked at run time. If the conversion is invalid -- if the type of the value stored in the existing interface value does not satisfy the interface to which it is being converted -- the program will fail with a run time error.
+
+go 编译器会在编译时静态检查是否一个类型实现了某个接口，运行时 go 又可以帮助你把一种类型的 interface 转换成另一个中类型，比如某个类型实现了多个 interface，在不同的调用场景下使用不同类型的 interface 的执行，这种 interface 之间的转换，go 已经帮你做了，一旦转换发生错误，go 发现转换无法完成，就会抛运行时错误。
+
+
+The receiver type must be of the form T or *T where T is a type name. T is called the receiver base type or just base type. The base type must not be a pointer or interface type and must be declared in the same package as the method.
+
+receiver type 只能是 T 类型或者 T 类型的指针 *T。T 被称之为 base type，base type 不能是指针或者是 interface type，必须在当前包中声明。
+
+
+interface 类型是一组方法的集合但不包含方法的实现，也就是 interface 仅仅只是一个定义，因而 interface 不能作为 receiver
+
+
 ## 推断 interface 中的值
 
 
