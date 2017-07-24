@@ -317,3 +317,61 @@ channel 是有方向的 c chan<- string, c <-chan string。
 select 类似于 switch case，select 会选择当前第一个 ready 状态的 channel，如果有多个同时准备好，会随机选一个，如果没有则阻塞直到有一个准备好为之。
 
 select 可以有默认的 channel，如果在一定时间内没有任何 channel，select 将执行默认 case。
+
+# make 和 new 的区别
+
+new(T) allocates zeroed storage for a new item of type T and returns its address, a value of type *T.
+
+new(T) 为一个 T 类型新值分配空间并初始化为 T 的零值，并返回新值的地址，也就是 T 类型的指针 *T。
+
+```go
+p1 := new(int)
+fmt.Println("%v", p1)
+fmt.Println("%v", *p1)
+
+var p2 *int
+i := 0
+p2 = &i
+fmt.Println("%v", p2)
+fmt.Println("%v", *p2)
+
+```
+
+上面的代码其实是等价的。
+
+make 只能用于 slice，map，channel 三种类型，make(T, args) 返回的是初始化之后的 T 类型的值，这个新值并不是 0 值，也不是指针 *T。
+
+```go
+var s1 []int
+if s1 == nil {
+    fmt.Println("s1 is nil --> ", s1) //输出 s1 is nil --> []
+}
+
+
+s2 := make([]int, 3)
+if s2 == nil {
+    fmt.Println("s2 is nil --> ", s2)
+} else {
+    fmt.Println("s2 is not nill --> ", s2) //输出 s2 is not nill --> [0 0 0]
+}
+
+```
+slice 的零值是 nil，使用 make 之后 slice 是一个初始化的 slice，即 slice 的内容被其类型值 int 的零值填充。
+
+同样 map 也是类似的。
+```go
+var m1 map[int]string
+if m1 == nil {
+    fmt.Println("m1 is nil --> ", m1) //输出 m1 is nil --> map[]
+}
+
+m2 := make(map[int]string)
+if m2 == nil {
+    fmt.Println("m2 is nil --> ", m2) 
+} else {
+    fmt.Println("m2 is not nill --> ", m2) //输出 m2 is not nill --> map[]
+}
+```
+
+
+
