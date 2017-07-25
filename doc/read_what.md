@@ -79,3 +79,8 @@ chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pd
 - https://blog.golang.org/defer-panic-and-recover
 - https://www.goinggo.net/2013/06/understanding-defer-panic-and-recover.html
 
+## channel
+
+- http://guzalexander.com/2013/12/06/golang-channels-tutorial.html
+- http://colobu.com/2016/04/14/Golang-Channels/
+
