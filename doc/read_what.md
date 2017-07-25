@@ -83,4 +83,28 @@ chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pd
 
 - http://guzalexander.com/2013/12/06/golang-channels-tutorial.html
 - http://colobu.com/2016/04/14/Golang-Channels/
+- https://github.com/a8m/go-lang-cheat-sheet#concurrency
+- https://stackoverflow.com/questions/18660533/why-using-unbuffered-channel-in-the-the-same-goroutine-gives-a-deadlock
+- https://golang.org/doc/effective_go.html#concurrency
+- http://www.jtolds.com/writing/2016/03/go-channels-are-bad-and-you-should-feel-bad/
+- https://abronan.com/introduction-to-goroutines-and-go-channels/
+
+
+## FAQ
+
+### 为什么不能在主 goroutine 中直接使用 channel
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    c := make(chan int)    
+    c <- 1   
+    fmt.Println(<-c)
+}
+```
+
+c 是一个 unbufferd channel ，会一直会阻塞着不发送数据，除非在一个 goroutine 中已经有了它的接收者，在上面的代码中，由于 c<-1 是在接收之前执行的，c 没有看到它的接收者，而它本身又需要一直阻塞着，但是它又必须执行找到它的接收者，于是就发生了死锁。
 

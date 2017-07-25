@@ -311,6 +311,8 @@ channel 用来在 goroutine 间通信。
 
 channel 是有方向的 c chan<- string, c <-chan string。
 
+If the channel is unbuffered, the sender blocks until the receiver has received the value. If the channel has a buffer, the sender blocks only until the value has been copied to the buffer; if the buffer is full, this means waiting until some receiver has retrieved a value
+
 
 # select 
 
@@ -402,5 +404,50 @@ s2 := make([]int, 3)
 fmt.Printf("%#v", s2) //[]int{0, 0, 0}
 modifySlice(s2)
 fmt.Printf("%#v", s2) //[]int{1, 0, 0}
+
+```
+
+这说明 make(T, args) 返回的是引用类型，在函数内部可以直接更改原始值，对 map 和 channel 也是如此。
+
+```go
+func modifyMap(m map[int]string) {
+    m[0] = "string"
+}
+
+func modifyChan(c chan string) {
+    c <- "string"
+}
+
+m2 := make(map[int]string)
+if m2 == nil {
+    fmt.Printf("m2 is nil --> %#v \n ", m2) 
+} else {
+    fmt.Printf("m2 is not nill --> %#v \n ", m2) //map[int]string{}
+}
+
+modifyMap(m2)
+fmt.Printf("m2 is not nill --> %#v \n ", m2) // map[int]string{0:"string"}
+
+
+c2 := make(chan string)
+if c2 == nil {
+    fmt.Printf("c2 is nil --> %#v \n ", c2)
+} else {
+    fmt.Printf("c2 is not nill --> %#v \n ", c2)
+}
+
+go modifyChan(c2)
+fmt.Printf("c2 is not nill --> %#v ", <-c2) //"string"
+
+```
+
+## new 和 struct
+
+```go
+
+type Person struct {
+    name string
+    age  int
+}
 
 ```

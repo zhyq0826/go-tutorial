@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -58,10 +57,8 @@ func main() {
 		fmt.Printf("c2 is not nill --> %#v \n ", c2)
 	}
 
-	modifyChan(c2)
-	time.Sleep(5)
-	c2value := <-c2
-	fmt.Printf("c2 is not nill --> %#v ", c2value)
+	go modifyChan(c2)
+	fmt.Printf("c2 is not nill --> %#v ", <-c2)
 }
 
 func modifySlice(s []int) {
