@@ -23,6 +23,18 @@ func (s *S) Set(age int) {
 	s.Age = age
 }
 
+type SS struct {
+	Age int
+}
+
+func (s SS) Get() int {
+	return s.Age
+}
+
+func (s SS) Set(age int) {
+	s.Age = age
+}
+
 //3
 func f(i I) {
 	i.Set(10)
@@ -34,9 +46,55 @@ type R struct{ i int }
 func (p *R) Get() int  { return p.i }
 func (p *R) Set(v int) { p.i = v }
 
+func doSomething(v interface{}) {
+	fmt.Println("doSomething called")
+}
+
+func printAll(vals []interface{}) {
+	for _, val := range vals {
+		fmt.Println(val)
+	}
+}
+
+type Animal interface {
+	Speak() string
+}
+
+type Dog struct {
+}
+
+func (d Dog) Speak() string {
+	return "Woof!"
+}
+
+type Cat struct {
+}
+
+func (c *Cat) Speak() string {
+	return "Meow!"
+}
+
+type Llama struct {
+}
+
+func (l Llama) Speak() string {
+	return "?????"
+}
+
+type JavaProgrammer struct {
+}
+
+func (j JavaProgrammer) Speak() string {
+	return "Design patterns!"
+}
+
 func main() {
 	s := S{}
 	f(&s) //4
+
+	ss := SS{}
+	f(&ss) //ponter
+	f(ss)  //value
 
 	var i I
 	i = &s
@@ -52,4 +110,22 @@ func main() {
 	case *R:
 		fmt.Println("i store *R", t)
 	}
+
+	doSomething(&s)
+
+	names := []string{"stanley", "david", "oscar"}
+	vals := make([]interface{}, len(names))
+	for index, value := range names {
+		vals[index] = value
+	}
+	// printAll(names)
+	printAll(vals)
+
+	//cannot use Cat literal (type Cat) as type Animal in array or slice literal:
+	// Cat does not implement Animal (Speak method has pointer receiver)
+	//
+	// animals := []Animal{Dog{}, Cat{}, Llama{}, JavaProgrammer{}}
+	// for _, animal := range animals {
+	// 	fmt.Println(animal.Speak())
+	// }
 }

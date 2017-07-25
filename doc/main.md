@@ -322,56 +322,85 @@ select 可以有默认的 channel，如果在一定时间内没有任何 channel
 
 new(T) allocates zeroed storage for a new item of type T and returns its address, a value of type *T.
 
-new(T) 为一个 T 类型新值分配空间并初始化为 T 的零值，并返回新值的地址，也就是 T 类型的指针 *T。
+## new(T) 返回的是 T 类的指针
+
+new(T) 为一个 T 类型新值分配空间并初始化为 T 的零值，返回新值的地址，也就是 T 类型的指针 *T。
 
 ```go
 p1 := new(int)
-fmt.Println("%v", p1)
-fmt.Println("%v", *p1)
+fmt.Printf("p1 --> %#v \n ", p1) //(*int)(0xc42000e250) 
+fmt.Printf("p1 point to --> %#v \n ", *p1) //0
 
 var p2 *int
 i := 0
 p2 = &i
-fmt.Println("%v", p2)
-fmt.Println("%v", *p2)
+fmt.Printf("p2 --> %#v \n ", p2) //(*int)(0xc42000e278) 
+fmt.Printf("p2 point to --> %#v \n ", *p2) //0 
 
 ```
 
-上面的代码其实是等价的。
+上面的代码是等价的，new(int) 初始化为 int 的零值，也就是 0，并返回 T 的指针，这和直接声明指针并初始化的效果是相同的。
 
-make 只能用于 slice，map，channel 三种类型，make(T, args) 返回的是初始化之后的 T 类型的值，这个新值并不是 0 值，也不是指针 *T。
+## make 只能用于 slice,map,channel
+
+make 只能用于 slice，map，channel 三种类型，make(T, args) 返回的是初始化之后的 T 类型的值，这个新值并不是 T 类型的零值，也不是指针 *T，是 T 的引用。
 
 ```go
 var s1 []int
 if s1 == nil {
-    fmt.Println("s1 is nil --> ", s1) //输出 s1 is nil --> []
+    fmt.Printf("s1 is nil --> %#v \n ", s1) // []int(nil)
 }
-
 
 s2 := make([]int, 3)
 if s2 == nil {
-    fmt.Println("s2 is nil --> ", s2)
+    fmt.Printf("s2 is nil --> %#v \n ", s2)
 } else {
-    fmt.Println("s2 is not nill --> ", s2) //输出 s2 is not nill --> [0 0 0]
+    fmt.Printf("s2 is not nill --> %#v \n ", s2)// []int{0, 0, 0}
 }
 
 ```
-slice 的零值是 nil，使用 make 之后 slice 是一个初始化的 slice，即 slice 的内容被其类型值 int 的零值填充。
+slice 的零值是 nil，使用 make 之后 slice 是一个初始化的 slice，即 slice 的内容被类型 int 的零值填充，形式是 [0 0 0]
 
-同样 map 也是类似的。
+map 和 channel 也是类似的。
 ```go
 var m1 map[int]string
 if m1 == nil {
-    fmt.Println("m1 is nil --> ", m1) //输出 m1 is nil --> map[]
+    fmt.Printf("m1 is nil --> %#v \n ", m1) //map[int]string(nil)
 }
 
 m2 := make(map[int]string)
 if m2 == nil {
-    fmt.Println("m2 is nil --> ", m2) 
+    fmt.Printf("m2 is nil --> %#v \n ", m2)
 } else {
-    fmt.Println("m2 is not nill --> ", m2) //输出 m2 is not nill --> map[]
+    fmt.Printf("m2 is not nill --> %#v \n ", m2) map[int]string{} 
+}
+
+
+var c1 chan string
+if c1 == nil {
+    fmt.Printf("c1 is nil --> %#v \n ", c1) //(chan string)(nil)
+}
+
+c2 := make(chan string)
+if c2 == nil {
+    fmt.Printf("c2 is nil --> %#v \n ", c2)
+} else {
+    fmt.Printf("c2 is not nill --> %#v \n ", c2)//(chan string)(0xc420016120)
 }
 ```
 
+## make(T, args) 返回的是 T 的 引用
 
+如果不特殊声明，go 的函数默认都是按值穿参，即通过函数传递的参数是值的副本，在函数内部对值修改不影响值的本身，但是 make(T, args) 返回的值通过函数传递参数之后可以直接修改。
 
+```go
+func modifySlice(s []int) {
+    s[0] = 1
+}
+
+s2 := make([]int, 3)
+fmt.Printf("%#v", s2) //[]int{0, 0, 0}
+modifySlice(s2)
+fmt.Printf("%#v", s2) //[]int{1, 0, 0}
+
+```

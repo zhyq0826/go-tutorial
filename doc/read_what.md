@@ -10,7 +10,8 @@
 - http://jordanorelli.tumblr.com/post/32665860244/how-to-use-interfaces-in-go
 - https://gobyexample.com/interfaces
 - https://golang.org/doc/effective_go.html#interfaces
-- https://my.oschina.net/xinxingegeya/blog/711916 
+- https://my.oschina.net/xinxingegeya/blog/711916
+- https://my.oschina.net/xlplbo/blog/199630
 
 ## type
 
