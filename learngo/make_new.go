@@ -4,6 +4,11 @@ import (
 	"fmt"
 )
 
+type Foo struct {
+	age  int
+	name string
+}
+
 func main() {
 	p1 := new(int)
 	fmt.Printf("p1 --> %#v \n ", p1)
@@ -58,7 +63,37 @@ func main() {
 	}
 
 	go modifyChan(c2)
-	fmt.Printf("c2 is not nill --> %#v ", <-c2)
+	fmt.Printf("c2 is not nill --> %#v\n ", <-c2)
+
+	var foo1 Foo
+	fmt.Printf("foo1 --> %#v\n ", foo1)
+	foo1.age = 1
+	fmt.Println(foo1.age)
+	foo2 := Foo{}
+	fmt.Printf("foo2 --> %#v\n ", foo2)
+	foo2.age = 2
+	fmt.Println(foo2.age)
+
+	foo3 := &Foo{}
+	fmt.Printf("foo3 --> %#v\n ", foo3)
+	foo3.age = 3
+	fmt.Println(foo3.age)
+
+	foo4 := new(Foo)
+	fmt.Printf("foo4 --> %#v\n ", foo4)
+	foo4.age = 4
+	fmt.Println(foo4.age)
+
+	var foo5 *Foo = new(Foo)
+	fmt.Printf("foo5 --> %#v\n ", foo5)
+	foo5.age = 5
+	fmt.Println(foo5.age)
+
+	modifyFooPointer(foo5)
+	fmt.Println("foo5", foo5.age)
+
+	modifyFoo(foo1)
+	fmt.Println("foo1", foo1.age)
 }
 
 func modifySlice(s []int) {
@@ -71,4 +106,14 @@ func modifyMap(m map[int]string) {
 
 func modifyChan(c chan string) {
 	c <- "string"
+}
+
+func modifyFooPointer(f *Foo) {
+	f.age = 10
+}
+
+//f 是 foo 的一个拷贝
+func modifyFoo(f Foo) {
+	foo := &f
+	foo.age = 10
 }
