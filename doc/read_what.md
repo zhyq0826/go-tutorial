@@ -1,3 +1,7 @@
+## blog
+
+- https://www.goinggo.net/post.html
+
 ## packages
 
 - [Understanding Golang Packages](https://thenewstack.io/understanding-golang-packages/)
@@ -107,4 +111,9 @@ func main() {
 ```
 
 c 是一个 unbufferd channel ，会一直会阻塞着不发送数据，除非在一个 goroutine 中已经有了它的接收者，在上面的代码中，由于 c<-1 是在接收之前执行的，c 没有看到它的接收者，而它本身又需要一直阻塞着，但是它又必须执行找到它的接收者，于是就发生了死锁。
+
+When you create a channel in Go with ch := make(chan bool), an unbuffered channel for bools is created. What does this mean for your program? For one, if you read (value := <-ch) it will block until there is data to receive. Secondly anything sending (ch <- true) will block until there is somebody to read it. Unbuffered channels make a perfect tool for synchronizing multiple goroutines.
+
+
+
 
