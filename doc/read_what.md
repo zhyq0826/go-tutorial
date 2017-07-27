@@ -1,6 +1,7 @@
 ## blog
 
 - https://www.goinggo.net/post.html
+- https://www.laktek.com/archive/
 
 ## packages
 
@@ -16,11 +17,13 @@
 - https://golang.org/doc/effective_go.html#interfaces
 - https://my.oschina.net/xinxingegeya/blog/711916
 - https://my.oschina.net/xlplbo/blog/199630
+- https://www.laktek.com/2012/02/13/learning-go-interfaces-reflections/
 
 ## type
 
 - http://www.integralist.co.uk/posts/golang-webserver.html
 - https://thenewstack.io/understanding-golang-type-system/
+- http://www.laktek.com/2012/01/27/learning-go-types/
 
 ## pointer
 
