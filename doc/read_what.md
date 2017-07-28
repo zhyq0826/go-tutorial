@@ -24,6 +24,7 @@
 - http://www.integralist.co.uk/posts/golang-webserver.html
 - https://thenewstack.io/understanding-golang-type-system/
 - http://www.laktek.com/2012/01/27/learning-go-types/
+- http://www.tapirgames.com/blog/golang-type-system
 
 ## pointer
 
@@ -118,5 +119,30 @@ c 是一个 unbufferd channel ，会一直会阻塞着不发送数据，除非�
 When you create a channel in Go with ch := make(chan bool), an unbuffered channel for bools is created. What does this mean for your program? For one, if you read (value := <-ch) it will block until there is data to receive. Secondly anything sending (ch <- true) will block until there is somebody to read it. Unbuffered channels make a perfect tool for synchronizing multiple goroutines.
 
 
+### why 两个 named type 不能相互赋值
 
+https://groups.google.com/forum/#!topic/golang-nuts/4Db2z2dEhfc
+
+That's correct.
+The reasoning goes like this: If you take the trouble to name Pint and
+Xint, it's because you want them to be distinct.  (This isn't C, where
+a typedef is just an alias.)  But sometimes it makes sense to speak of
+the structure as all you care about; consider things like the indexing
+functions in the bytes package.  So we allow assignment in those
+cases.
+
+The motivating example in our thinking was something like type Point
+struct { X, Y float }.   Another named type with the same fields
+probably is a different idea or it would share the declaration; they
+shouldn't be interchangeable.  Another way to say it is that if they
+don't have the same methods (even potentially), they shouldn't be
+assignable.  On the other hand a generic struct { X, Y int } is
+talking just about the structure, not its interpretation, so it makes
+sense to allow assignment between that type and Point.
+
+Also, although I cannot reconstruct the history, the current rules
+were arrived at largely through experience coupled with a desire for a
+simple specification.  They aren't arbitrary.
+
+-rob
 

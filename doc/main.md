@@ -1,4 +1,4 @@
-# datatype
+# type
 
 go types can be classifed as four category
 
