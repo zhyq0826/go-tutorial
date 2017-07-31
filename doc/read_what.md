@@ -18,6 +18,7 @@
 - https://my.oschina.net/xinxingegeya/blog/711916
 - https://my.oschina.net/xlplbo/blog/199630
 - https://www.laktek.com/2012/02/13/learning-go-interfaces-reflections/
+- http://mwholt.blogspot.in/2014/08/maximizing-use-of-interfaces-in-go.html
 
 ## type
 
