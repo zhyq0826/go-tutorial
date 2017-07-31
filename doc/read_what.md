@@ -25,6 +25,7 @@
 - https://thenewstack.io/understanding-golang-type-system/
 - http://www.laktek.com/2012/01/27/learning-go-types/
 - http://www.tapirgames.com/blog/golang-type-system
+- https://dave.cheney.net/2014/05/24/on-declaring-variables
 
 ## pointer
 
@@ -97,6 +98,10 @@ chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pd
 - http://www.jtolds.com/writing/2016/03/go-channels-are-bad-and-you-should-feel-bad/
 - https://abronan.com/introduction-to-goroutines-and-go-channels/
 
+## Best Practice
+
+- https://blog.rubylearning.com/best-practices-for-a-new-go-developer-8660384302fc
+- https://talks.golang.org/2013/bestpractices.slide#1
 
 ## FAQ
 
