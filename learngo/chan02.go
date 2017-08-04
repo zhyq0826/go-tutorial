@@ -12,17 +12,17 @@ func main() {
 	go func() {
 		for i := 0; i < 4; i++ {
 			c <- i
+			num++
 			v := "inner=>" + strconv.Itoa(num)
 			s = append(s, v)
-			num++
 		}
 	}()
 
 	for i := 0; i < 4; i++ {
 		<-c
+		num++
 		v := "outer=>" + strconv.Itoa(num)
 		s = append(s, v)
-		num++
 	}
 
 	fmt.Println(s)
