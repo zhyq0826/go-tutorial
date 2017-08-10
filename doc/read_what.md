@@ -32,10 +32,14 @@ http://go-database-sql.org/index.html
 ## type
 
 - http://www.integralist.co.uk/posts/golang-webserver.html
-- https://thenewstack.io/understanding-golang-type-system/
 - http://www.laktek.com/2012/01/27/learning-go-types/
 - http://www.tapirgames.com/blog/golang-type-system
 - https://dave.cheney.net/2014/05/24/on-declaring-variables
+
+## OO
+
+- http://blog.ralch.com/tutorial/golang-code-generation-and-generics/
+- https://thenewstack.io/understanding-golang-type-system/
 
 ## pointer
 
@@ -159,5 +163,44 @@ Also, although I cannot reconstruct the history, the current rules
 were arrived at largely through experience coupled with a desire for a
 simple specification.  They aren't arbitrary.
 
+underlying type 一样的 named type 不能赋值，既然是 named type，即使 underlying type 一样，肯定是为了作区分才分别写成两个 named type
+
 -rob
+
+###  go 安装依赖包一般会通过四种路径
+
+```
+1. github.com/
+2. golang.org/
+3. gopkg.in/
+4. honnet.co/
+```
+
+比如我们可以通过 `go get github.com/xxx` 来下载安装包
+下载好之后, 通过 `go install github.com/xxx` 来安装包
+
+```
+安装包会下载到 `$GOPATH/src` 文件中
+安装后的执行文件在 `$GOPATH/bin` 文件
+```
+
+**常见错误**
+
+当我们执行 `go get golang.org/x/tools/cmd/goimports` 会报错
+*package golang.org/x/tools/cmd/goimports: unrecognized import path "golang.org/x/tools/cmd/goimports"*
+
+这个问题会出现在高版本的 golang, 一般的解决办法是
+
+```
+# 创建文件夹  
+mkdir $GOPATH/src/golang.org/x/ 
+# 进入文件夹 
+cd  $GOPATH/src/golang.org/x/
+# 下载源码 
+git clone https://github.com/golang/tools.git
+# 安装
+go install golang.org/x/tools/cmd/goimports
+```
+
+同理可解决其他处在 `golang.org/x/` 路径下的包
 

@@ -441,13 +441,11 @@ fmt.Printf("c2 is not nill --> %#v ", <-c2) //"string"
 
 ```
 
-## new 和 struct
+## go 中的面向对象
 
-```go
+定义 Person 作为我们的基础属性集合 struct，定义 People 表示 Person 的行为，
+Person 实现了 People 的方法也就实现了 People 接口。
 
-type Person struct {
-    name string
-    age  int
-}
-
-```
+Speaker，Organizers，Attendee 通过嵌入类型继承了 Person 的属性和方法，也就是实现 People
+接口，他们都可以用 People 类型来表示，通过 Meetup 中的 People slice 来
+表示，Organizers 和 Speaker 都复写了 Getdetails 方法。

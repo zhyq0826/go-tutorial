@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 type People interface {
@@ -41,6 +42,58 @@ type Attendee struct {
 	interests []string
 }
 
-func main() {
+//overrides GetDetails
+func (s Speaker) GetDetails() {
+	//Call person GetDetails
+	s.Person.GetDetails()
+	fmt.Println("Speaker talks on following technologies:")
+	for _, value := range s.speaksOn {
+		fmt.Println(value)
+	}
+	fmt.Println("Presented on the following conferences:")
+	for _, value := range s.pastEvents {
+		fmt.Println(value)
+	}
+}
 
+//overrides GetDetails
+func (o Organizer) GetDetails() {
+	//Call person GetDetails
+	o.Person.GetDetails()
+	fmt.Println("Organizer, conducting following Meetups:")
+	for _, value := range o.meetups {
+		fmt.Println(value)
+	}
+}
+
+type Meetup struct {
+	location string
+	city     string
+	date     time.Time
+	people   []People
+}
+
+func (m Meetup) MeetupPeople() {
+	for _, v := range m.people {
+		v.SayHello()
+		v.GetDetails()
+	}
+}
+
+func main() {
+	shiju := Speaker{Person{"Shiju", 35, "Kochi", "+91-94003372xx"},
+		[]string{"Go", "Docker", "Azure", "AWS"},
+		[]string{"FOSS", "JSFOO", "MS TechDays"}}
+	satish := Organizer{Person{"Satish", 35, "Pune", "+91-94003372xx"},
+		[]string{"Gophercon", "RubyConf"}}
+	alex := Attendee{Person{"Alex", 22, "Bangalore", "+91-94003672xx"},
+		[]string{"Go", "Ruby"}}
+	meetup := Meetup{
+		"Royal Orchid",
+		"Bangalore",
+		time.Date(2015, time.February, 19, 9, 0, 0, 0, time.UTC),
+		[]People{shiju, satish, alex},
+	}
+	//get details of meetup people
+	meetup.MeetupPeople()
 }
