@@ -36,6 +36,10 @@ http://go-database-sql.org/index.html
 - http://www.tapirgames.com/blog/golang-type-system
 - https://dave.cheney.net/2014/05/24/on-declaring-variables
 
+## string 
+
+- http://herman.asia/efficient-string-concatenation-in-go
+
 ## OO
 
 - http://blog.ralch.com/tutorial/golang-code-generation-and-generics/
