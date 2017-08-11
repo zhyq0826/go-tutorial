@@ -11,6 +11,7 @@ func (nm NewMap) add(key int, value string) {
 }
 
 func main() {
+	// unname type 和 name type 可以相互赋值
 	var p NewMap = make(map[int]string)
 	p.add(10, "a")
 	fmt.Println(p)
