@@ -443,6 +443,8 @@ fmt.Printf("c2 is not nill --> %#v ", <-c2) //"string"
 
 ## go 中的面向对象
 
+- https://thenewstack.io/understanding-golang-type-system/
+
 定义 Person 作为我们的基础属性集合 struct，定义 People 表示 Person 的行为，
 Person 实现了 People 的方法也就实现了 People 接口。
 
