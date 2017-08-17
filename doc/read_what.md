@@ -44,6 +44,7 @@ http://go-database-sql.org/index.html
 
 - http://blog.ralch.com/tutorial/golang-code-generation-and-generics/
 - https://thenewstack.io/understanding-golang-type-system/
+- https://www.goinggo.net/2015/09/composition-with-go.html
 
 ## pointer
 

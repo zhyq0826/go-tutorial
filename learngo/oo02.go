@@ -10,7 +10,7 @@ type Person struct {
 }
 
 func (p *Person) sayName() {
-	fmt.Printf(p.name)
+	fmt.Println(p.name)
 }
 
 type Student struct {
@@ -26,6 +26,7 @@ func main() {
 	s1.sayName() // sayName 的 receiver 仍然是 Person，而此时 Person 的属性 name 是空
 
 	s2 := Student{name: "Java", Person: Person{name: "VB"}}
-	s2.sayName()         // Person 已经有了自己的属性
-	fmt.Println(s2.name) //遮蔽 Person 的属性
+	s2.sayName()                // Person 已经有了自己的属性
+	fmt.Println(s2.name)        //遮蔽 Person 的属性
+	fmt.Println(s2.Person.name) // VB
 }
