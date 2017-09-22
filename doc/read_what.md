@@ -3,6 +3,7 @@
 - https://www.goinggo.net/post.html
 - https://www.laktek.com/archive/
 - https://rakyll.org/
+- https://dave.cheney.net/
 
 ## context
 
