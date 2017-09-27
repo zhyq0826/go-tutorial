@@ -214,7 +214,7 @@ t := Teacher{Person{name: "teacher"}}
 
 # struct
 
-go 的方法传值默认是按值传递，不能被修改，要想被修改必须要按照引用传递，所有 struct 的方法必须是 *p。
+go 的方法传值默认是按值传递，不能被修改，要想被修改必须要按照引用传递，所有 struct 的方法必须是 `*p`。
 
 声明 struct 对象有 new、字面量、声明等不同的方法。
 
@@ -232,7 +232,7 @@ interface类型定义了一组方法，如果某个 struct 实现了某个接口
 任意的类型都实现了空interface(我们这样定义：interface{})，也就是包含0个method的interface。
 
 
-空interface(interface{})不包含任何的method，正因为如此，所有的类型都实现了空interface。空interface对于描述起不到任何的作用(因为它不包含任何的method），但是空interface在我们需要存储任意类型的数值的时候相当有用，因为它可以存储任意类型的数值。它有点类似于C语言的void*类型。
+空interface(interface{})不包含任何的method，正因为如此，所有的类型都实现了空interface。空interface对于描述起不到任何的作用(因为它不包含任何的method），但是空interface在我们需要存储任意类型的数值的时候相当有用，因为它可以存储任意类型的数值。它有点类似于C语言的`void*`类型。
 
 
 ```golang
@@ -268,9 +268,9 @@ This is not pure duck typing, because when possible the Go compiler will statica
 go 编译器会在编译时静态检查是否一个类型实现了某个接口，运行时 go 又可以帮助你把一种类型的 interface 转换成另一个中类型，比如某个类型实现了多个 interface，在不同的调用场景下使用不同类型的 interface 的执行，这种 interface 之间的转换，go 已经帮你做了，一旦转换发生错误，go 发现转换无法完成，就会抛运行时错误。
 
 
-The receiver type must be of the form T or *T where T is a type name. T is called the receiver base type or just base type. The base type must not be a pointer or interface type and must be declared in the same package as the method.
+The receiver type must be of the form T or `*T` where T is a type name. T is called the receiver base type or just base type. The base type must not be a pointer or interface type and must be declared in the same package as the method.
 
-receiver type 只能是 T 类型或者 T 类型的指针 *T。T 被称之为 base type，base type 不能是指针或者是 interface type，必须在当前包中声明。
+receiver type 只能是 T 类型或者 T 类型的指针 `*T`。T 被称之为 base type，base type 不能是指针或者是 interface type，必须在当前包中声明。
 
 
 interface 类型是一组方法的集合但不包含方法的实现，也就是 interface 仅仅只是一个定义，因而 interface 不能作为 receiver
@@ -303,6 +303,10 @@ switch value := element.(type){
 
 ```
 
+## interface value 进行比较
+
+两个 interface value 值进行比较，必须他们的 dynamic type 是相同的，而且 dynamic value 也是相同的才是相同的，前提条件必须是 dynamic value 是可比较的，如果是不可以比较的就会 panic，所以在比较 interface 的 value 或者 switch 语句中使用 interface  一定要注意 拍你才
+
 # channel
 
 channel 用来在 goroutine 间通信。
@@ -322,11 +326,11 @@ select 可以有默认的 channel，如果在一定时间内没有任何 channel
 
 # make 和 new 的区别
 
-new(T) allocates zeroed storage for a new item of type T and returns its address, a value of type *T.
+new(T) allocates zeroed storage for a new item of type T and returns its address, a value of type `*T.`
 
 ## new(T) 返回的是 T 类的指针
 
-new(T) 为一个 T 类型新值分配空间并初始化为 T 的零值，返回新值的地址，也就是 T 类型的指针 *T。
+new(T) 为一个 T 类型新值分配空间并初始化为 T 的零值，返回新值的地址，也就是 T 类型的指针 `*T`。
 
 ```go
 p1 := new(int)
@@ -345,7 +349,7 @@ fmt.Printf("p2 point to --> %#v \n ", *p2) //0
 
 ## make 只能用于 slice,map,channel
 
-make 只能用于 slice，map，channel 三种类型，make(T, args) 返回的是初始化之后的 T 类型的值，这个新值并不是 T 类型的零值，也不是指针 *T，是 T 的引用。
+make 只能用于 slice，map，channel 三种类型，make(T, args) 返回的是初始化之后的 T 类型的值，这个新值并不是 T 类型的零值，也不是指针 `*T`，是 T 的引用。
 
 ```go
 var s1 []int
