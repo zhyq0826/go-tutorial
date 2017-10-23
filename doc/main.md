@@ -192,11 +192,13 @@ go package 中有 init 函数，用于在包导入时执行，如果仅仅只想
 
 pointer 是指向某种类型的第一个地址，表示 memory 中的一个 address。
 
+```
 声明 var ptr *type.
 
 赋值 *ptr = value。
 
 new(T) 分配了一个零值填充的 T 类型的空间，并且返回其地址，一个 *T 类型的值，它返回的是一个指针。
+```
 
 make(T, args) 返回的是一个 T 类型。
 

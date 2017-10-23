@@ -5,6 +5,8 @@ import (
 	"sync"
 )
 
+//代码中演示了条件锁的作用，使用条件锁可以同时唤起满足所有条件的进程
+//
 func main() {
 	m := make(map[int]string)
 	m[2] = "first value"
