@@ -12,10 +12,22 @@ fetch1:
 	go run ch01_05_fetch1.go http://example.com/
 fetchall1:
 	go run ch01_06_fetchall1.go http://example.com/ http://example.com/ http://example.com/
-clock1:
-	go run ch08_02_clock1.go
 spiner1:
 	go run ch08_01_spiner1.go
+clock1:
+	go run ch08_02_clock1.go
+clock2:
+	go run ch08_02_clock2.go
+reverb1:
+	go run ch08_03_reverb1.go
+reverb2:
+	go run ch08_03_reverb2.go
+netcat2:
+	go run ch08_03_netcat2.go
+ftp:
+	go run ch08_02_ftp1.go
+nc:
+	nc localhost 8888
 071:
 	go run ch07_071.go
 ttp01:
