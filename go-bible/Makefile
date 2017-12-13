@@ -12,6 +12,10 @@ fetch1:
 	go run ch01_05_fetch1.go http://example.com/
 fetchall1:
 	go run ch01_06_fetchall1.go http://example.com/ http://example.com/ http://example.com/
+clock1:
+	go run ch08_02_clock1.go
+spiner1:
+	go run ch08_01_spiner1.go
 071:
 	go run ch07_071.go
 ttp01:
