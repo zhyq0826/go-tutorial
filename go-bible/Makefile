@@ -24,6 +24,10 @@ reverb2:
 	go run ch08_03_reverb2.go
 netcat2:
 	go run ch08_03_netcat2.go
+netcat3:
+	go run ch08_03_netcat3.go
+netcat4:
+	go run ch08_03_netcat4.go
 ftp:
 	go run ch08_02_ftp1.go
 nc:
