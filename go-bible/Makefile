@@ -42,3 +42,7 @@ ttp03:
 	go run ch07_07_http03.go
 ttp04:
 	go run ch07_07_http04.go
+pipline1:
+	go run ch08_04_pipline1.go
+pipline2:
+	go run ch08_04_pipline2.go
