@@ -46,3 +46,7 @@ pipline1:
 	go run ch08_04_pipline1.go
 pipline2:
 	go run ch08_04_pipline2.go
+pipline3:
+	go run ch08_04_pipline3.go
+thumbnail:
+	go run ch08_05_thumbnail.go

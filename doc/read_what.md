@@ -117,6 +117,7 @@ chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pd
 - https://golang.org/doc/effective_go.html#concurrency
 - http://www.jtolds.com/writing/2016/03/go-channels-are-bad-and-you-should-feel-bad/
 - https://abronan.com/introduction-to-goroutines-and-go-channels/
+- http://golangtutorials.blogspot.com/2011/06/channels-in-go-range-and-select.html
 
 ## Best Practice
 
