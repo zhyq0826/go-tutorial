@@ -22,6 +22,8 @@ reverb1:
 	go run ch08_03_reverb1.go
 reverb2:
 	go run ch08_03_reverb2.go
+netcat1:
+	go run ch08_03_netcat1.go
 netcat2:
 	go run ch08_03_netcat2.go
 netcat3:
