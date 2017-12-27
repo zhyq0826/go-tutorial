@@ -16,12 +16,14 @@ func main() {
 	defer conn.Close()
 	// 从 conn 中读取数据并且送到标准输出
 	go mustCopy(os.Stdout, conn)
+	//从标准输入中读取数据并且送到 conn
 	mustCopy(conn, os.Stdin)
 }
 
-//从标准输入中读取数据并且送到 conn
 func mustCopy(dst io.Writer, src io.Reader) {
 	if _, err := io.Copy(dst, src); err != nil {
-		log.Fatal(err)
+		if err == io.EOF { //check eof ctrl + d
+			os.Exit(1)
+		}
 	}
 }
