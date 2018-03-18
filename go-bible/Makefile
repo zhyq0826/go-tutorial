@@ -52,3 +52,7 @@ pipline3:
 	go run ch08_04_pipline3.go
 thumbnail:
 	go run ch08_05_thumbnail.go
+struct1:
+	go run ch04_04_struct.go
+struct2:
+	go run ch04_04_struct2.go

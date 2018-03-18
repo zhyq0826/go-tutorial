@@ -9,6 +9,13 @@ type Customer struct {
 	Addresses          []Address
 }
 
+func (c Customer) ToAddress() string {
+	for _, v := range c.Addresses {
+		return fmt.Sprintf("city is %s", v.City)
+	}
+	return ""
+}
+
 type Address struct {
 	City string
 }
@@ -33,4 +40,5 @@ func main() {
 	}
 
 	fmt.Println("%#v", c3)
+	fmt.Println("c3 address is", c3.ToAddress())
 }
