@@ -1,0 +1,1 @@
+openssl req -x509  -newkey rsa:2048 -keyout private.pem -out public.pem -nodes
