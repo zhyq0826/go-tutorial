@@ -10,3 +10,9 @@ w05:
 	go run web_05.go
 w06:
 	go run web_06.go
+w07:
+	go run web_07.go
+w08:
+	go run web_08.go
+http2:
+	curl -I --http2 --insecure  https://localhost:8080/ 

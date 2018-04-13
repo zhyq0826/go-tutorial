@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -27,15 +28,37 @@ func formHandler(rw http.ResponseWriter, req *http.Request) {
 
 func multiFormHandler(rw http.ResponseWriter, req *http.Request) {
 	req.ParseMultipartForm(1024)
-	fmt.Fprintln(rw, req.MultipartForm) //支持带有文件的表单
+	fmt.Fprintln(rw, req.MultipartForm) //支持带有文件的表单, 不包括 url query
 }
 
 func valueHandler(rw http.ResponseWriter, req *http.Request) {
 	fmt.Fprintln(rw, req.FormValue("first_name"))
 	fmt.Fprintln(rw, req.PostFormValue("first_name"))
-	fmt.Fprintln(rw, req.Form)
-	fmt.Fprintln(rw, req.PostForm)
-	fmt.Fprintln(rw, req.MultipartForm)
+	fmt.Fprintln(rw, req.Form)          // 包括 url query
+	fmt.Fprintln(rw, req.PostForm)      // 只包括 form
+	fmt.Fprintln(rw, req.MultipartForm) // form value 执行之前是调用 paraseMutilForm
+}
+
+func fileHandler(rw http.ResponseWriter, req *http.Request) {
+	req.ParseMultipartForm(1014)
+	fileheader := req.MultipartForm.File["myfile"][0]
+	file, err := fileheader.Open()
+	if err == nil {
+		data, err := ioutil.ReadAll(file)
+		if err == nil {
+			fmt.Fprintln(rw, string(data))
+		}
+	}
+}
+
+func fileHandler2(rw http.ResponseWriter, req *http.Request) {
+	file, _, err := req.FormFile("myfile")
+	if err == nil {
+		data, err := ioutil.ReadAll(file)
+		if err == nil {
+			fmt.Fprintln(rw, string(data))
+		}
+	}
 }
 
 func main() {
@@ -48,6 +71,8 @@ func main() {
 	http.HandleFunc("/form", formHandler)
 	http.HandleFunc("/multiform", multiFormHandler)
 	http.HandleFunc("/value", valueHandler)
+	http.HandleFunc("/file", fileHandler)
+	http.HandleFunc("/file2", fileHandler2)
 	error := server.ListenAndServe()
 	fmt.Println(error)
 }

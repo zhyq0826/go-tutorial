@@ -40,3 +40,20 @@ multiform 支持带文件的数据，返回两个 map ，一个是表单数据�
 
 FormValue 支持不进行 parseForm 直接获取 form 数据，同理有 PostFormValue。FormValue 获取的是 form 中 key 的第一个 value，formvalue 只支持 enctype=application/x-www-form-urlencoded，他们是通过调用 ParseMultipartForm 实现的
 
+
+## File form
+
+Go 处理文件是通过 multiForm.File 实现的，同样也提供了 FormFile 来简化文件的处理
+
+## Response
+
+ResponseWriter 是一个 interface 包含有
+- WriteHeader 设置 response status code
+- Header 设置 response header
+- Write  设置 response body，接受 byte
+
+同样 Header().Set, Header().Add 代表了添加和新增
+
+## Cookie
+
+Cookie 这个 struct 存在 http 包中，并且除了使用 ResponseWriter.Header() 设置 cookie 之外，http 包还提供了 SetCookie 来简化对 cookie 的修改
