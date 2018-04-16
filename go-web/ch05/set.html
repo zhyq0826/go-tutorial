@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+</head>
+<body>
+    <p>{{.}}</p>
+    {{with "hello"}}
+      <p>{{.}}</p>
+    {{end}}
+    <p>{{.}}</p>
+
+    
+    <p>{{.}}</p>
+    {{with ""}}
+      <p>{{.}}</p>
+    {{else}}
+        <p>nothing to show</p>
+    {{end}}
+    <p>{{.}}</p>    
+
+</body>
+</html>

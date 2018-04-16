@@ -44,8 +44,8 @@ func main() {
 	c.ChangeEmail("Pone@gmail.com")
 	fmt.Println("after change email", c.Email)
 
-	// 如果 receiver 不是 pointer go 会自动转换 (*c).ChangeName
 	fmt.Println("before change name", c.Name)
+	// 如果 receiver 不是 pointer go 会自动转换 (*c).ChangeName，转换之后传递的是副本，不影响原来的数据修改
 	c.ChangeName("Pone")
 	fmt.Println("after change name", c.Name)
 }
