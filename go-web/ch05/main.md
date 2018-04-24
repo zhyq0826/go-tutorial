@@ -59,3 +59,6 @@ pipeline 类似 jinja2 的 pipeline
 ## func
 
 func 类似于 jinja2 的标签，事先绑定一个 func 到 template 实现更强大的功能
+
+## context awareness
+

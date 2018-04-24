@@ -4,3 +4,5 @@ w02:
 	go run web_02.go
 w03:
 	go run web_03.go
+w04:
+	go run web_04.go
