@@ -1,0 +1,16 @@
+TRACE: 2018/05/02 16:44:34 main.go:14: Main started
+TRACE: 2018/05/02 16:44:34 main.go:23: Loop started
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 0
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 1
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 2
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 3
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 4
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 5
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 6
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 7
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 8
+INFO: 2018/05/02 16:44:34 main.go:25: Counter value is: 9
+WARNING: 2018/05/02 16:44:34 main.go:27: The counter variable is not being used
+TRACE: 2018/05/02 16:44:34 main.go:28: Loop completed
+ERROR: 2018/05/02 16:44:34 main.go:17: Sample Error
+TRACE: 2018/05/02 16:44:34 main.go:18: Main completed
