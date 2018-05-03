@@ -14,6 +14,7 @@ func Swap(x, y string) (string, string) {
 	return y, x
 }
 
+//变长参数，最后存储在 slice 中
 func Sum(nums ...int) int {
 	total := 0
 	for _, i := range nums {
@@ -35,5 +36,6 @@ func main() {
 	fmt.Println("sum x and y", Sum(x, y))
 	s := []int{1, 2, 3, 4, 5}
 	// sum slice dot is after
+	// slice 当做参数传递
 	fmt.Println("sum slice", Sum(s...))
 }

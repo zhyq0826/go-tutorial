@@ -6,6 +6,7 @@ import (
 
 func main() {
 	var x []int
+	// slice 可以和 nil 比较
 	if x == nil {
 		fmt.Println("x is nil")
 	}

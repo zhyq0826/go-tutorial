@@ -27,6 +27,10 @@ func randomCounter(out chan int) {
 // Produces Fibonacci values of inputs provided by randomCounter
 // out chan<- fibvalue, in <-chan int)
 // 在此 out 只负责出 in 只负责进
+// The communication
+// operator <- put on the right side of the chan keyword specifies a channel to be used only for send operations;
+// put on the left side of the chan keyword, the same operator specifies that a channel is to be used only for
+// receive operations
 func generateFibonacci(out chan fibvalue, in chan int) {
 	defer wg.Done()
 	var input float64
