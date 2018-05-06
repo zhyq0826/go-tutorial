@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	// user go package alias
-	fav "go-tutorial/go-recipes/ch01/lib"
+	fav "github.com/zhyq0826/go-tutorial/go-recipes/ch01/lib"
 )
 
 func main() {

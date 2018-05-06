@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	// user go package blank alias when init package function
-	_ "go-tutorial/go-recipes/ch01/lib"
+	_ "github.com/zhyq0826/go-tutorial/go-recipes/ch01/lib"
 )
 
 func main() {

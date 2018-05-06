@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"go-tutorial/go-recipes/ch01/lib"
-	"go-tutorial/go-recipes/ch01/strutils"
+	"github.com/zhyq0826/go-tutorial/go-recipes/ch01/lib"
+	"github.com/zhyq0826/go-tutorial/go-recipes/ch01/strutils"
 )
 
 func main() {
