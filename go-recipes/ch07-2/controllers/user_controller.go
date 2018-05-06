@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/zhyq0826/go-tutorial/go-recipes/ch07-2/common"
@@ -14,7 +15,13 @@ import (
 func Register(w http.ResponseWriter, r *http.Request) {
 	var dataResource UserResource
 	// Decode the incoming User json
+
+	length := r.ContentLength
+	body := make([]byte, length)
+	r.Body.Read(body)
+	fmt.Println(string(body))
 	err := json.NewDecoder(r.Body).Decode(&dataResource)
+	fmt.Println(err)
 	if err != nil {
 		common.DisplayAppError(
 			w,

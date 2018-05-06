@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/shijuvar/go-recipes/ch07/bookmarkapi/common"
-	"github.com/shijuvar/go-recipes/ch07/bookmarkapi/routers"
+	"github.com/zhyq0826/go-tutorial/go-recipes/ch07-2/common"
+	"github.com/zhyq0826/go-tutorial/go-recipes/ch07-2/routers"
 )
 
 // Entry point of the program
