@@ -18,6 +18,7 @@ http://go-database-sql.org/index.html
 - [Understanding Golang Packages](https://thenewstack.io/understanding-golang-packages/)
 - https://www.golang-book.com/books/intro/11
 - http://www.amghost.cc/go-import-understand/
+- https://medium.com/golangspec/import-declarations-in-go-8de0fd3ae8ff
 
 ## interface
 
