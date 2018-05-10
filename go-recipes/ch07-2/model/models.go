@@ -17,7 +17,7 @@ type (
 	}
 	// Bookmark type represents the metadata of a bookmark.
 	Bookmark struct {
-		ID          bson.ObjectId `bson:"_id,omitempty"`
+		ID          bson.ObjectId `bson:"_id,omitempty" json:"id"`
 		Name        string        `json:"name"`
 		Description string        `json:"description"`
 		Location    string        `json:"location"`
