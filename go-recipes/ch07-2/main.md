@@ -11,3 +11,7 @@ vscode gofmtool 默认是 goreturns 会自动删除未使用的包，因为 vsco
 
 https://www.reddit.com/r/golang/comments/4vtoc4/noob_vscode_is_deleting_my_import_line/
 
+
+## r.Request.Body 
+
+r.Request.Body 是一个 buffer 读取完成之后就不能继续读了，处理 body 中的 json 时需要注意，在使用 json decoder 时注意 body 的读取时机，不然报 EOF 错误
