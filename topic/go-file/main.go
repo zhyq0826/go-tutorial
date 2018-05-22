@@ -11,7 +11,8 @@ import (
 func main() {
 	var filePath string
 	filePath = "/Users/zhaoyongqiang/t.txt"
-	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_WRONLY, 0775)
+	// f, err := os.OpenFile(filePath, os.O_RDWR, 0775)
+	f, err := os.OpenFile(filePath, os.O_RDWR|os.O_APPEND, 0775)
 	// f, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal(err)
