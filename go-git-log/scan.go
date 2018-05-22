@@ -116,7 +116,7 @@ func parseFileLineToSlice(filePath string) []string {
 
 //打开文件
 func openFile(filePath string) *os.File {
-	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_WRONLY, 0775)
+	f, err := os.Open(filePath)
 	if err != nil {
 		if os.IsNotExist(err) {
 			// 文件不存在

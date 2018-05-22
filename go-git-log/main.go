@@ -14,7 +14,8 @@ func scan(path string) {
 }
 
 func stats(email string) {
-	print("email")
+	commits := processRepositories(email)
+	printCommitsStats(commits)
 }
 
 func main() {
@@ -25,7 +26,7 @@ func main() {
 	flag.Parse()
 	if folder != "" {
 		scan(folder)
-		return
+		// return
 	}
 
 	stats(email)
