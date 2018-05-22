@@ -19,6 +19,7 @@ func scanGitFolders(folders []string, folder string) []string {
 		log.Fatal(err)
 	}
 
+	// readdir return FileInfo type
 	files, err := f.Readdir(-1)
 	defer f.Close()
 	var path string
@@ -26,6 +27,7 @@ func scanGitFolders(folders []string, folder string) []string {
 		if file.IsDir() {
 			path = folder + "/" + file.Name()
 			if file.Name() == ".git" {
+				//去除后缀
 				path = strings.TrimSuffix(path, "/.git")
 				fmt.Println(path)
 				// 把包含 git 的 folder 加入 slice
@@ -53,6 +55,7 @@ func recursiveScanFolder(folder string) []string {
 // return the dot file
 // create is and the enclosing folder if it does not exist
 func getDotFilePath() string {
+	// current user
 	usr, err := user.Current()
 	if err != nil {
 		log.Fatal(err)
@@ -116,6 +119,8 @@ func parseFileLineToSlice(filePath string) []string {
 
 //打开文件
 func openFile(filePath string) *os.File {
+	// mode only must have read and write
+	// https://golang.org/pkg/os/#pkg-constants
 	f, err := os.OpenFile(filePath, os.O_RDWR|os.O_APPEND, 0755)
 	if err != nil {
 		if os.IsNotExist(err) {
