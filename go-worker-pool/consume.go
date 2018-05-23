@@ -18,7 +18,6 @@ func (queue Queue) Consume(worker Worker) error {
 	}
 
 	// signal the pool that a message will be processed
-
 	worker.ProcessingChannel <- true
 
 }

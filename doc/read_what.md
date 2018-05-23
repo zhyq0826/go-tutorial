@@ -5,6 +5,7 @@
 - https://rakyll.org/
 - https://dave.cheney.net/
 - https://www.golangnote.com/
+- https://medium.com/golangspec
 
 ## context
 
