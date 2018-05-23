@@ -4,6 +4,7 @@
 - https://www.laktek.com/archive/
 - https://rakyll.org/
 - https://dave.cheney.net/
+- https://www.golangnote.com/
 
 ## context
 
