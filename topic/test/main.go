@@ -16,7 +16,7 @@ type myFuncType func(int, int) bool
 // Parameter and result lists are always parenthesized except that if there is exactly one unnamed result it may be written as an unparenthesized type.
 // 参数和结果集必须要带()，除非结果集只有一个 unnamed type
 // type myFuncType3 func(x int, y int) z bool == invalid
-type myFuncType2 func(int int) (z bool)
+type myFuncType2 func(int, int) (z bool)
 type myFuncType3 func(x int, y int) bool
 
 func createMyFunc(myFunc myFuncType) {
@@ -32,21 +32,18 @@ func createMyFunc3(myfunc myFuncType3) {
 }
 
 func main() {
-	//返回值不带名字的能够转换带名字或不带名字的
 	createMyFunc(myFuncType(addFunc))
 	createMyFunc(myFuncType(addFunc2))
 	createMyFunc(myFuncType(addFunc3))
 	createMyFunc(myFuncType(addFunc4))
 	createMyFunc(myFuncType(addFunc5))
 
-	//返回值带名字的都不能转换
-	// createMyFunc2(myFuncType2(addFunc)) // cannot convert addFunc (type func(int, int) bool) to type myFuncType2 addFunc 和 myFuncType2 函数签名不一致
-	// createMyFunc2(myFuncType2(addFunc2)) //cannot convert addFunc2 (type func(int, int) bool) to type myFuncType2
-	// createMyFunc2(myFuncType2(addFunc3)) //cannot convert addFunc3 (type func(int, int) bool) to type myFuncType2
-	// createMyFunc2(myFuncType2(addFunc4)) //cannot convert addFunc4 (type func(int, int) bool) to type myFuncType2
-	// createMyFunc2(myFuncType2(addFunc5))
+	createMyFunc2(myFuncType2(addFunc))
+	createMyFunc2(myFuncType2(addFunc2))
+	createMyFunc2(myFuncType2(addFunc3))
+	createMyFunc2(myFuncType2(addFunc4))
+	createMyFunc2(myFuncType2(addFunc5))
 
-	//返回值不带名字的能够转换带名字或不带名字的
 	createMyFunc3(myFuncType3(addFunc))
 	createMyFunc3(myFuncType3(addFunc2))
 	createMyFunc3(myFuncType3(addFunc3))
