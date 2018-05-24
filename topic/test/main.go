@@ -37,18 +37,21 @@ func main() {
 	createMyFunc(myFuncType(addFunc2))
 	createMyFunc(myFuncType(addFunc3))
 	createMyFunc(myFuncType(addFunc4))
+	createMyFunc(myFuncType(addFunc5))
 
 	//返回值带名字的都不能转换
 	// createMyFunc2(myFuncType2(addFunc)) // cannot convert addFunc (type func(int, int) bool) to type myFuncType2 addFunc 和 myFuncType2 函数签名不一致
 	// createMyFunc2(myFuncType2(addFunc2)) //cannot convert addFunc2 (type func(int, int) bool) to type myFuncType2
 	// createMyFunc2(myFuncType2(addFunc3)) //cannot convert addFunc3 (type func(int, int) bool) to type myFuncType2
 	// createMyFunc2(myFuncType2(addFunc4)) //cannot convert addFunc4 (type func(int, int) bool) to type myFuncType2
+	// createMyFunc2(myFuncType2(addFunc5))
 
 	//返回值不带名字的能够转换带名字或不带名字的
 	createMyFunc3(myFuncType3(addFunc))
 	createMyFunc3(myFuncType3(addFunc2))
 	createMyFunc3(myFuncType3(addFunc3))
 	createMyFunc3(myFuncType3(addFunc4))
+	createMyFunc3(myFuncType3(addFunc5))
 }
 
 func addFunc(x, y int) bool {
@@ -64,6 +67,11 @@ func addFunc3(x, y int) (z bool) {
 }
 
 func addFunc4(x, y int) (z bool) {
+	z = x == y
+	return z
+}
+
+func addFunc5(x int, y int) (z bool) {
 	z = x == y
 	return z
 }
