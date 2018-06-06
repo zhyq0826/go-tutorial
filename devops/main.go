@@ -15,7 +15,7 @@ func main() {
 	router := apps.InitRouter()
 	handler := handlers.LoggingHandler(os.Stdout, router)
 	server := &http.Server{
-		Addr:    "127.0.0.1:8300",
+		Addr:    "127.0.0.1:8000",
 		Handler: handler,
 	}
 	log.Println("Listening...")

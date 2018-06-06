@@ -1,7 +1,6 @@
 package devops
 
 import (
-	"log"
 	"time"
 
 	"github.com/zhyq0826/go-tutorial/devops/db"
@@ -37,7 +36,7 @@ func QueryDomain(page, limit int, name, url string) []model.Domain {
 		limit = 10
 	}
 	domains := make([]model.Domain, limit)
-	conditon := make([]interface{}, 2)
+	conditon := make([]interface{}, 0)
 	query := ""
 	if name != "" {
 		query += "name = ?"
@@ -47,8 +46,7 @@ func QueryDomain(page, limit int, name, url string) []model.Domain {
 		query += "and url = ?"
 		conditon = append(conditon, url)
 	}
-	db.DB.Where(query, conditon...).Find(&domains)
+	db.DB.Where(query, conditon...).Limit(limit).Offset((page - 1) * limit).Find(&domains)
 
-	log.Fatal(domains)
 	return domains
 }

@@ -19,6 +19,7 @@ func init() {
 		log.Fatal(err)
 	}
 
+	DB.LogMode(true)
 	// check db conn
 	DB.Raw("select 1")
 }
