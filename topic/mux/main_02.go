@@ -30,6 +30,6 @@ func main() {
 	r := mux.NewRouter()
 	s := r.PathPrefix("/product").Subrouter()
 	s.HandleFunc("/", indexHandler)
-	http.Handle("/", s)
+	http.Handle("/", r)
 	http.ListenAndServe("localhost:8300", nil)
 }

@@ -9,10 +9,9 @@ import (
 
 // InitRoutes init domain app route
 func InitRoutes(router *mux.Router) *mux.Router {
-	router.HandleFunc("/domain/list", GetDomains)
-	// appRouter := mux.NewRouter()
-	// appRouter.HandleFunc("/list", GetDomains)
-	// router.PathPrefix("/domain").Handler(handlers.LoggingHandler(os.Stdout, appRouter))
+	appRouter = router.PathPrefix("/domain").Subrouter()
+	appRouter.HandleFunc("/list", GetDomains)
+	// .Handler(handlers.LoggingHandler(os.Stdout, appRouter))
 	return router
 }
 
