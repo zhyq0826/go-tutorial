@@ -13,7 +13,8 @@ import (
 var DB *gorm.DB
 
 func init() {
-	DB, err := gorm.Open("mysql", "root:@/blog?charset=utf8&parseTime=True&loc=Local")
+	var err error
+	DB, err = gorm.Open("mysql", "root:@/blog?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		log.Fatal(err)
 	}
