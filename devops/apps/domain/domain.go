@@ -15,8 +15,9 @@ import (
 func InitRoutes(router *mux.Router) *mux.Router {
 	appRouter := router.PathPrefix("/domain").Subrouter()
 	appRouter.HandleFunc("/list", getDomains)
-	appRouter.HandleFunc("/create", createDomain)
-	appRouter.HandleFunc("/{id:[0-9]+}", updateDomain)
+	appRouter.HandleFunc("/create", createDomain).Methods("POST")
+	appRouter.HandleFunc("/{id:[0-9]+}", updateDomain).Methods("PUT")
+	appRouter.HandleFunc("/{id:[0-9]+}", deleteDomain).Methods("DELETE")
 	return router
 }
 
@@ -69,4 +70,14 @@ func updateDomain(w http.ResponseWriter, r *http.Request) {
 		log.Println("convert id to fails")
 	}
 	helper.UpdateDomain(id, dataSource.Name, dataSource.URL, dataSource.Private)
+}
+
+// deleteDomain handle
+func deleteDomain(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		log.Println("convert id to fails")
+	}
+	helper.DeleteDomain(id)
 }

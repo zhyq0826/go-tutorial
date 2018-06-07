@@ -52,3 +52,7 @@ func QueryDomain(page, limit int, name, url string) []model.Domain {
 
 	return domains
 }
+
+func DeleteDomain(id int) {
+	db.DB.Delete(&model.Domain{}, "id = ?", id)
+}

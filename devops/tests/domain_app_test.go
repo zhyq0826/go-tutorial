@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -87,9 +88,26 @@ func TestCreate(t *testing.T) {
 }
 
 func TestUpdate(t *testing.T) {
-	// resp, err := http.Post(host + "/domain/1")
+	form := resources.DomainForm{
+		Name:    "i am name",
+		URL:     "i am url",
+		Private: 1,
+	}
+	client := http.Client{}
+	data, _ := json.Marshal(form)
+	body := bytes.NewBuffer(data)
+	req, _ := http.NewRequest(http.MethodPut, host+"/domain/1", body)
+	resp, _ := client.Do(req)
+	if resp.StatusCode != 200 {
+		t.Fail()
+	}
 }
 
 func TestDelete(t *testing.T) {
-
+	client := http.Client{}
+	req, _ := http.NewRequest(http.MethodDelete, host+"/domain/10", io.Reader(nil))
+	resp, _ := client.Do(req)
+	if resp.StatusCode != 200 {
+		t.Fail()
+	}
 }
