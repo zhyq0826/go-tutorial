@@ -20,6 +20,7 @@ func init() {
 	}
 
 	DB.LogMode(true)
+	DB.SingularTable(true)
 	// check db conn
 	DB.Raw("select 1")
 }
