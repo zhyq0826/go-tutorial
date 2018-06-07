@@ -1,19 +1,19 @@
 package tests
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"testing"
+
+	"github.com/zhyq0826/go-tutorial/devops/resources"
 )
 
 var host = "http://127.0.0.1:8000"
 
-func TestCreate(t *testing.T) {
-
-}
-
+//formatJSON and print beautiful
 func formatJSON(f interface{}) {
 
 	if v, ok := f.([]interface{}); ok {
@@ -35,6 +35,7 @@ func formatJSON(f interface{}) {
 	}
 }
 
+// decode json data to list
 func decodeList(f interface{}) []map[string]interface{} {
 	ret := make([]map[string]interface{}, 0)
 	if v, ok := f.([]interface{}); ok {
@@ -46,6 +47,7 @@ func decodeList(f interface{}) []map[string]interface{} {
 	return ret
 }
 
+// decode json data to map
 func decodeMap(f interface{}) map[string]interface{} {
 	var ret map[string]interface{}
 	if v, ok := f.(map[string]interface{}); ok {
@@ -61,24 +63,31 @@ func TestList(t *testing.T) {
 		t.Error(err)
 	}
 	data, _ := ioutil.ReadAll(resp.Body)
-	var v interface{}
+	var v []resources.DomainForm
 	json.Unmarshal(data, &v)
-	for _, value := range decodeList(v) {
-		ret := decodeMap(value)
-		fmt.Println(ret)
-		_, ok := ret["Name"]
-		if ok != true {
-			t.Fail()
-		}
-		_, ok = ret["URL"]
-		if ok != true {
+	for _, d := range v {
+		if d.URL == "" || d.Name == "" {
 			t.Fail()
 		}
 	}
 }
 
-func TestUpdate(t *testing.T) {
+func TestCreate(t *testing.T) {
+	form := resources.DomainForm{
+		Name:    "i am name",
+		URL:     "i am url",
+		Private: 1,
+	}
+	data, _ := json.Marshal(form)
+	body := bytes.NewBuffer(data)
+	resp, _ := http.Post(host+"/domain/create", "application/json", body)
+	if resp.StatusCode != 200 {
+		t.Fail()
+	}
+}
 
+func TestUpdate(t *testing.T) {
+	// resp, err := http.Post(host + "/domain/1")
 }
 
 func TestDelete(t *testing.T) {

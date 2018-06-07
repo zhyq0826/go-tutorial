@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	helper "github.com/zhyq0826/go-tutorial/devops/helpers/devops"
+	"github.com/zhyq0826/go-tutorial/devops/resources"
 )
 
 // InitRoutes init domain app route
@@ -47,8 +48,8 @@ func getDomains(w http.ResponseWriter, r *http.Request) {
 
 // createDomain handle
 func createDomain(w http.ResponseWriter, r *http.Request) {
-	dataSource := domainForm{}
-	err := json.NewDecoder(r.Body).Decode(dataSource)
+	dataSource := resources.DomainForm{}
+	err := json.NewDecoder(r.Body).Decode(&dataSource)
 	if err != nil {
 		log.Println(err)
 	}
@@ -58,8 +59,8 @@ func createDomain(w http.ResponseWriter, r *http.Request) {
 // updateDomain handle
 func updateDomain(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	dataSource := domainForm{}
-	err := json.NewDecoder(r.Body).Decode(dataSource)
+	dataSource := resources.DomainForm{}
+	err := json.NewDecoder(r.Body).Decode(&dataSource)
 	if err != nil {
 		log.Println(err)
 	}

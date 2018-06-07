@@ -1,6 +1,7 @@
 package devops
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/zhyq0826/go-tutorial/devops/db"
@@ -17,6 +18,7 @@ func CreateDomain(name, url string, private uint) {
 	now := time.Now()
 	domain.UpdatedAt = now
 	domain.CreatedAt = now
+	fmt.Println(domain)
 	db.DB.Create(&domain)
 }
 

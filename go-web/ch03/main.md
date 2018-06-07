@@ -53,7 +53,14 @@ mux.Handle(pattern, HandleFunc(handler))
 
 ## chain handler 链式调用 handler
 
+```go
 
+func (handler http.Handler) http.Handler {
+    return http.HandlerFunc(func (ResponseWriter, *Request){
+        
+    })
+}
+```
 
 
 
