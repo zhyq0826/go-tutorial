@@ -5,6 +5,7 @@ import "time"
 type (
 	// DomainForm for json data
 	DomainForm struct {
+		ID        int       `json:"id,omitempty"`
 		Name      string    `json:"name"`
 		URL       string    `json:"url"`
 		Private   uint      `json:"private"`
@@ -14,11 +15,25 @@ type (
 
 	// ComputerForm for json data
 	ComputerForm struct {
+		ID        int       `json:"id,omitempty"`
 		CPU       uint      `json:"cpu"`
 		RAM       uint      `json:"ram"`
 		PrivateIP string    `json:"private_ip"`
 		PublicIP  string    `json:"public_ip"`
 		CreatedAt time.Time `json:"created_at,omitempty"`
 		UpdatedAt time.Time `json:"updated_at,omitempty"`
+	}
+
+	// DiskForm for json data
+	DiskForm struct {
+		ID int `json:"id,omitempty"`
+		// 容量
+		Size int `json:"size"`
+		// 剩余容量
+		Left int `json:"left"`
+		// 机器 id
+		ComputerID int       `json:"computer_id"`
+		CreatedAt  time.Time `json:"created_at,omitempty"`
+		UpdatedAt  time.Time `json:"updated_at,omitempty"`
 	}
 )

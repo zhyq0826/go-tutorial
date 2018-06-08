@@ -44,15 +44,36 @@ func QueryComputer(page, limit int) []model.Computer {
 	return ret
 }
 
-// DeleteComputer
+// DeleteComputer for computer delete
 func DeleteComputer(id int) {
 	db.DB.Delete(&model.Computer{}, "id = ?", id)
 }
 
-func CreateDisk(computer_id uint) {
-
+// CreateDisk for disk create
+func CreateDisk(form resources.DiskForm) {
+	disk := model.Disk{
+		Size:       form.Size,
+		Left:       form.Left,
+		ComputerID: form.ComputerID,
+	}
+	now := time.Now()
+	disk.UpdatedAt = now
+	disk.CreatedAt = now
+	db.DB.Create(&disk)
 }
 
-func UpdateDisk(computer_id uint) {
+// UpdateDisk for disk update
+func UpdateDisk(id int, form resources.DiskForm) {
+	disk := model.Disk{
+		Size:       form.Size,
+		Left:       form.Left,
+		ComputerID: form.ComputerID,
+	}
+	disk.UpdatedAt = time.Now()
+	db.DB.Model(&disk).Where("id=?", id).Updates(disk)
+}
 
+// DeleteDisk for disk delete
+func DeleteDisk(id int) {
+	db.DB.Delete(&model.Disk{}, "id = ?", id)
 }

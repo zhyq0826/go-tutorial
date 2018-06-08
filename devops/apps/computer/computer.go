@@ -18,6 +18,9 @@ func InitRoutes(router *mux.Router) *mux.Router {
 	appRouter.HandleFunc("/create", createComputer).Methods("POST")
 	appRouter.HandleFunc("/{id:[0-9]+}", updateComputer).Methods("PUT")
 	appRouter.HandleFunc("/{id:[0-9]+}", deleteComputer).Methods("DELETE")
+	appRouter.HandleFunc("/disk/create", createDisk).Methods("POST")
+	appRouter.HandleFunc("/disk/{id:[0-9]+", updateDisk).Methods("PUT")
+	appRouter.HandleFunc("/disk/{id:[0-9]+", deleteDisk).Methods("DELETE")
 	return router
 }
 
@@ -80,4 +83,42 @@ func deleteComputer(w http.ResponseWriter, r *http.Request) {
 		log.Println("convert id to fails")
 	}
 	helper.DeleteComputer(id)
+}
+
+// createDisk handle
+func createDisk(w http.ResponseWriter, r *http.Request) {
+	dataSource := resources.DiskForm{}
+	err := json.NewDecoder(r.Body).Decode(&dataSource)
+	if err != nil {
+		log.Println(err)
+	}
+	helper.CreateDisk(dataSource)
+}
+
+// updateDisk handle
+func updateDisk(w http.ResponseWriter, r *http.Request) {
+	dataSource := resources.DiskForm{}
+	vars := mux.Vars(r)
+	err := json.NewDecoder(r.Body).Decode(&dataSource)
+	if err != nil {
+		log.Println(err)
+	}
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		log.Println(err)
+	}
+	helper.UpdateDisk(id, dataSource)
+}
+
+// deleteDisk handle
+func deleteDisk(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		log.Println(err)
+	}
+	if err != nil {
+		log.Println(err)
+	}
+	helper.DeleteDisk(id)
 }

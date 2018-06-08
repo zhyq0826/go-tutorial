@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	helper "github.com/zhyq0826/go-tutorial/devops/helpers/devops"
 	"github.com/zhyq0826/go-tutorial/devops/resources"
+	"github.com/zhyq0826/go-tutorial/devops/utils"
 )
 
 // InitRoutes init domain app route
@@ -41,7 +42,14 @@ func getDomains(w http.ResponseWriter, r *http.Request) {
 	}
 
 	domains := helper.QueryDomain(skip, limit, q.Get("name"), q.Get("url"))
-	jsonData, _ := json.Marshal(domains)
+	var dataSource []resources.DomainForm
+	for _, v := range domains {
+		vv := v
+		dest := resources.DomainForm{}
+		utils.CopyStruct(&vv, &dest)
+		dataSource = append(dataSource, dest)
+	}
+	jsonData, _ := json.Marshal(dataSource)
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(jsonData)

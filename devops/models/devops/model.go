@@ -27,19 +27,19 @@ func (Domain) TableName() string {
 // Computer 机器
 type Computer struct {
 	BaseModel
-	CPU       uint   `gorm:"column:cpu;type:int(11)"`
-	RAM       uint   `gorm:"column:ram;type:int(11)"`
-	PrivateIP string `gorm:"column:private_ip;type:varchar(256)"`
-	PublicIP  string `gorm:"column:public_ip;type:varchar(256)"`
+	CPU       uint   `gorm:"column:cpu;type:int(11);default:0"`
+	RAM       uint   `gorm:"column:ram;type:int(11);default:0"`
+	PrivateIP string `gorm:"column:private_ip;type:varchar(256):default:''"`
+	PublicIP  string `gorm:"column:public_ip;type:varchar(256):default:''"`
 }
 
 // Disk 磁盘
 type Disk struct {
 	BaseModel
 	// 容量
-	Size int `gorm:"column:size;type:int(11)"`
+	Size int `gorm:"column:size;type:int(11);default:0"`
 	// 剩余容量
-	Left int `gorm:"column:left;type:int(11)"`
+	Left int `gorm:"column:left;type:int(11):default:0"`
 	// 机器 id
 	ComputerID int `gorm:"column:computer_id;type:int(11)"`
 }
