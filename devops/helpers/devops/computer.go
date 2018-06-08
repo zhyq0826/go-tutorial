@@ -52,3 +52,7 @@ func DeleteComputer(id int) {
 func CreateDisk(computer_id uint) {
 
 }
+
+func UpdateDisk(computer_id uint) {
+
+}
