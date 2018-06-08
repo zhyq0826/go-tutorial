@@ -44,6 +44,11 @@ func QueryComputer(page, limit int) []model.Computer {
 	return ret
 }
 
+// DeleteComputer
 func DeleteComputer(id int) {
 	db.DB.Delete(&model.Computer{}, "id = ?", id)
+}
+
+func CreateDisk(computer_id uint) {
+
 }

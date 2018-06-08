@@ -40,10 +40,6 @@ type Disk struct {
 	Size int `gorm:"column:size;type:int(11)"`
 	// 剩余容量
 	Left int `gorm:"column:left;type:int(11)"`
-}
-
-type Computer2Disk struct {
-	BaseModel
-	DiskID     int `gorm:"column:disk_id;type:int(11)"`
+	// 机器 id
 	ComputerID int `gorm:"column:computer_id;type:int(11)"`
 }
