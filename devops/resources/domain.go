@@ -15,7 +15,7 @@ type (
 
 	// ComputerForm for json data
 	ComputerForm struct {
-		ID        int       `json:"id,omitempty"`
+		ID        int       `json:"id"`
 		CPU       uint      `json:"cpu"`
 		RAM       uint      `json:"ram"`
 		PrivateIP string    `json:"private_ip"`

@@ -10,37 +10,38 @@ import (
 	"github.com/zhyq0826/go-tutorial/devops/resources"
 )
 
-var domainClient = RequestClient{
+var computerClient = RequestClient{
 	HOST:        "http://127.0.0.1:8000",
-	Prefix:      "/domain",
+	Prefix:      "/computer",
 	ContentType: "application/json",
 }
 
-func TestDomainList(t *testing.T) {
+func TestComputerList(t *testing.T) {
 	url := "/list"
-	resp := domainClient.Get(url)
+	resp := computerClient.Get(url)
 	if resp == nil {
 		t.Fail()
 	}
 	data, _ := ioutil.ReadAll(resp.Body)
-	var v []resources.DomainForm
+	var v []resources.ComputerForm
 	json.Unmarshal(data, &v)
 	for _, d := range v {
-		if d.URL == "" || d.Name == "" {
+		if d.CPU == 0 || d.RAM == 0 {
 			t.Fail()
 		}
 	}
 }
 
-func TestDomainCreate(t *testing.T) {
-	form := resources.DomainForm{
-		Name:    "i am name",
-		URL:     "i am url",
-		Private: 1,
+func TestComputerCreate(t *testing.T) {
+	form := resources.ComputerForm{
+		CPU:       2,
+		RAM:       4,
+		PrivateIP: "10.12.292.1",
+		PublicIP:  "10.12.292.1",
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)
-	resp := domainClient.Post("/create", body)
+	resp := computerClient.Post("/create", body)
 	if resp == nil {
 		t.Fail()
 	}
@@ -49,15 +50,16 @@ func TestDomainCreate(t *testing.T) {
 	}
 }
 
-func TestDomainUpdate(t *testing.T) {
-	form := resources.DomainForm{
-		Name:    "i am name",
-		URL:     "i am url",
-		Private: 1,
+func TestComputerUpdate(t *testing.T) {
+	form := resources.ComputerForm{
+		CPU:       2,
+		RAM:       4,
+		PrivateIP: "10.12.292.1",
+		PublicIP:  "10.12.292.1",
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)
-	resp := domainClient.Put("/1", body)
+	resp := computerClient.Put("/4", body)
 	if resp == nil {
 		t.Fail()
 	}
@@ -66,8 +68,8 @@ func TestDomainUpdate(t *testing.T) {
 	}
 }
 
-func TestDomainDelete(t *testing.T) {
-	resp := domainClient.Delete("/10", io.Reader(nil))
+func TestComputerDelete(t *testing.T) {
+	resp := computerClient.Delete("/1", io.Reader(nil))
 	if resp == nil {
 		t.Fail()
 	}

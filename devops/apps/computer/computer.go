@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	helper "github.com/zhyq0826/go-tutorial/devops/helpers/devops"
 	"github.com/zhyq0826/go-tutorial/devops/resources"
+	"github.com/zhyq0826/go-tutorial/devops/utils"
 )
 
 // InitRoutes init domain app route
@@ -44,7 +45,14 @@ func getComputers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ret := helper.QueryComputer(skip, limit)
-	jsonData, _ := json.Marshal(ret)
+	var dataSource []resources.ComputerForm
+	for _, v := range ret {
+		vv := v
+		dest := resources.ComputerForm{}
+		utils.CopyStruct(&vv, &dest)
+		dataSource = append(dataSource, dest)
+	}
+	jsonData, _ := json.Marshal(dataSource)
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(jsonData)
