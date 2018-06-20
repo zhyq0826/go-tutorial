@@ -5,56 +5,31 @@ import (
 	"io"
 	"os"
 	"reflect"
-	"time"
 )
 
-type Domain struct {
-	Name    string `gorm:"column:name;type:varchar(256)"`
-	URL     string `gorm:"column:url;type:varchar(256)"`
-	Private uint   `gorm:"column:private;type:tinyint;not null;default:0"`
-}
-
-type DomainForm struct {
-	ID        int       `json:"id,omitempty"`
-	Name      string    `json:"name"`
-	URL       string    `json:"url"`
-	Private   uint      `json:"private"`
-	CreatedAt time.Time `json:"created_at,omitempty"`
-	UpdatedAt time.Time `json:"updated_at,omitempty"`
-}
-
 func main() {
-	// fmt.Println(reflect.ValueOf(Domain{}).Elem())
+	// typeOf 总是返回的是一个 实际类型是 reflect.Type concrete type
 	t := reflect.TypeOf(3)
-	fmt.Println(t.String())
-	fmt.Println(t)
+	//下面两个输出是一样的
+	fmt.Println(t.String()) // int
+	fmt.Println(t)          //int
 	var w io.Writer = os.Stdout
-	fmt.Println(reflect.TypeOf(w))
+	fmt.Println(reflect.TypeOf(w)) // *os.File 反应的是 os.Stdout 的 concrete type
 
+	// valueOf 总是返回 interface 的 dynamic value 实际类型是 refect.Value
+	// reflect.Value 能够接受任何值
 	v := reflect.ValueOf(3)
 	fmt.Println(v)
-	fmt.Println(v.String())
-	fmt.Println(v.Type())
+	fmt.Println(v.String()) //<int Value>
+	fmt.Println(v.Type())   // int
 	x := v.Interface()
 	i := x.(int)
-	fmt.Println(i)
-	sv := reflect.ValueOf(&Domain{
-		Name: "name domain",
-	}).Elem()
-	df := &DomainForm{}
-	dv := reflect.ValueOf(df).Elem()
-	for i := 0; i < sv.NumField(); i++ {
-		value := sv.Field(i)
-		name := sv.Type().Field(i).Name
-		fmt.Println(name)
-		fmt.Println(value)
+	fmt.Println(i) //3
 
-		dvalue := dv.FieldByName(name)
-		if dvalue.IsValid() == false {
-			continue
-		}
-		dvalue.Set(value)
-	}
+	fmt.Printf("%T\n", reflect.TypeOf(3)) // int
+	fmt.Printf("%#v\n", reflect.TypeOf(3))
 
-	fmt.Println(df)
+	// reflect.Value 和 interface{} 都能接受任意值，差别在于 interface 因此了实现细节和 value 的固有属性，
+	// 除非我们知道 dynamic type 是多少，并且使用 type assertion 获取到其值，否则什么也做不了
+	// 相反使用 reflect.Value 我们可以有很多方式获取 value 的内容
 }
