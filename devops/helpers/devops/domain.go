@@ -9,10 +9,10 @@ import (
 )
 
 // CreateDomain create
-func CreateDomain(name, url string, private uint) {
+func CreateDomain(name, host string, private uint) {
 	domain := model.Domain{
 		Name:    name,
-		URL:     url,
+		Host:    host,
 		Private: private,
 	}
 	now := time.Now()
@@ -23,17 +23,17 @@ func CreateDomain(name, url string, private uint) {
 }
 
 // UpdateDomain update
-func UpdateDomain(id int, name, url string, private uint) {
+func UpdateDomain(id int, name, host string, private uint) {
 	domain := model.Domain{
 		BaseModel: model.BaseModel{
 			ID: id,
 		},
 	}
-	db.DB.Model(&domain).Updates(&model.Domain{Name: name, URL: url})
+	db.DB.Model(&domain).Updates(&model.Domain{Name: name, Host: host})
 }
 
 // QueryDomain domain list
-func QueryDomain(page, limit int, name, url string) []model.Domain {
+func QueryDomain(page, limit int, name, host string) []model.Domain {
 	if limit == 0 {
 		limit = 10
 	}
@@ -44,12 +44,11 @@ func QueryDomain(page, limit int, name, url string) []model.Domain {
 		query += "name = ?"
 		conditon = append(conditon, name)
 	}
-	if url != "" {
-		query += "and url = ?"
-		conditon = append(conditon, url)
+	if host != "" {
+		query += "and host = ?"
+		conditon = append(conditon, host)
 	}
 	db.DB.Where(query, conditon...).Limit(limit).Offset((page - 1) * limit).Find(&domains)
-
 	return domains
 }
 

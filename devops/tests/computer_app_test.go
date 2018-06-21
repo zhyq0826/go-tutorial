@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"testing"
 
+	model "github.com/zhyq0826/go-tutorial/devops/models/devops"
 	"github.com/zhyq0826/go-tutorial/devops/resources"
 )
 
@@ -34,10 +35,12 @@ func TestComputerList(t *testing.T) {
 
 func TestComputerCreate(t *testing.T) {
 	form := resources.ComputerForm{
-		CPU:       2,
-		RAM:       4,
-		PrivateIP: "10.12.292.1",
-		PublicIP:  "10.12.292.1",
+		Computer: model.Computer{
+			CPU:       2,
+			RAM:       4,
+			PrivateIP: "10.12.292.1",
+			PublicIP:  "10.12.292.1",
+		},
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)
@@ -52,10 +55,12 @@ func TestComputerCreate(t *testing.T) {
 
 func TestComputerUpdate(t *testing.T) {
 	form := resources.ComputerForm{
-		CPU:       2,
-		RAM:       4,
-		PrivateIP: "10.12.292.1",
-		PublicIP:  "10.12.292.1",
+		Computer: model.Computer{
+			CPU:       2,
+			RAM:       4,
+			PrivateIP: "10.12.292.1",
+			PublicIP:  "10.12.292.1",
+		},
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)

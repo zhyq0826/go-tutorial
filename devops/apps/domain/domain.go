@@ -9,7 +9,6 @@ import (
 	"github.com/gorilla/mux"
 	helper "github.com/zhyq0826/go-tutorial/devops/helpers/devops"
 	"github.com/zhyq0826/go-tutorial/devops/resources"
-	"github.com/zhyq0826/go-tutorial/devops/utils"
 )
 
 // InitRoutes init domain app route
@@ -42,14 +41,14 @@ func getDomains(w http.ResponseWriter, r *http.Request) {
 	}
 
 	domains := helper.QueryDomain(skip, limit, q.Get("name"), q.Get("url"))
-	var dataSource []resources.DomainForm
-	for _, v := range domains {
-		vv := v
-		dest := resources.DomainForm{}
-		utils.CopyStruct(&vv, &dest)
-		dataSource = append(dataSource, dest)
-	}
-	jsonData, _ := json.Marshal(dataSource)
+	// var dataSource []resources.DomainForm
+	// for _, v := range domains {
+	// 	vv := v
+	// 	dest := resources.DomainForm{}
+	// 	utils.CopyStruct(&vv, &dest)
+	// 	dataSource = append(dataSource, dest)
+	// }
+	jsonData, _ := json.Marshal(domains)
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(jsonData)
@@ -62,7 +61,7 @@ func createDomain(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	helper.CreateDomain(dataSource.Name, dataSource.URL, dataSource.Private)
+	helper.CreateDomain(dataSource.Name, dataSource.Host, dataSource.Private)
 }
 
 // updateDomain handle
@@ -77,7 +76,7 @@ func updateDomain(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("convert id to fails")
 	}
-	helper.UpdateDomain(id, dataSource.Name, dataSource.URL, dataSource.Private)
+	helper.UpdateDomain(id, dataSource.Name, dataSource.Host, dataSource.Private)
 }
 
 // deleteDomain handle

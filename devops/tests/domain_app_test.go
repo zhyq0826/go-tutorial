@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"testing"
 
+	model "github.com/zhyq0826/go-tutorial/devops/models/devops"
 	"github.com/zhyq0826/go-tutorial/devops/resources"
 )
 
@@ -26,7 +27,7 @@ func TestDomainList(t *testing.T) {
 	var v []resources.DomainForm
 	json.Unmarshal(data, &v)
 	for _, d := range v {
-		if d.URL == "" || d.Name == "" {
+		if d.Host == "" || d.Name == "" {
 			t.Fail()
 		}
 	}
@@ -34,9 +35,11 @@ func TestDomainList(t *testing.T) {
 
 func TestDomainCreate(t *testing.T) {
 	form := resources.DomainForm{
-		Name:    "i am name",
-		URL:     "i am url",
-		Private: 1,
+		Domain: model.Domain{
+			Name:    "i am name",
+			Host:    "i am url",
+			Private: 1,
+		},
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)
@@ -51,9 +54,11 @@ func TestDomainCreate(t *testing.T) {
 
 func TestDomainUpdate(t *testing.T) {
 	form := resources.DomainForm{
-		Name:    "i am name",
-		URL:     "i am url",
-		Private: 1,
+		Domain: model.Domain{
+			Name:    "i am name",
+			Host:    "i am url",
+			Private: 1,
+		},
 	}
 	data, _ := json.Marshal(form)
 	body := bytes.NewBuffer(data)
