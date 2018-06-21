@@ -47,9 +47,13 @@ func (j *JSON) UnmarshalJSON(data []byte) error {
 	*j = append((*j)[0:0], data...)
 	return nil
 }
+
+//IsNull for json
 func (j JSON) IsNull() bool {
 	return len(j) == 0 || string(j) == "null"
 }
+
+// Equals for json
 func (j JSON) Equals(j1 JSON) bool {
 	return bytes.Equal([]byte(j), []byte(j1))
 }
