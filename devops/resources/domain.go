@@ -46,4 +46,9 @@ type (
 	ServiceForm struct {
 		devops.Service
 	}
+
+	// AppForm for json data
+	AppForm struct {
+		devops.App
+	}
 )

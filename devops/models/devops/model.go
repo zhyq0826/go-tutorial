@@ -88,6 +88,7 @@ type Computer struct {
 	PublicIP  string `gorm:"column:public_ip;type:varchar(256):default:''" json:"public_ip"`
 	// 服务 id 一般来说一台机器最好部署单一的服务
 	ServiceID uint `gorm:"column:service_id;type:int(11);default:0" json:"service_id"`
+	AppID     uint `gorm:"column:app_id;type:int(11);default:0" json:"app_id"`
 }
 
 // Disk 磁盘
@@ -101,9 +102,10 @@ type Disk struct {
 	ComputerID int `gorm:"column:computer_id;type:int(11)" json:"computer_id"`
 }
 
-// Service 服务 一般对应一个地址，可以外部地址或内部地址，地址可以是一个域名或一个路径。服务包括基础服务和应用服务
-// 应用服务 执行特定功能的服务，比如认证鉴权、商品列表、订单交易等
+// Service 服务是具有单一职责的一个完整的应用 app，一般对应一个地址，可以外部地址或内部地址，地址可以是一个域名或一个路径。
+// 服务包括基础服务和应用服务
 // 基础服务 提供应用服务基础功能的服务，比如数据库服务、消息队列服务、缓存服务等等
+// 应用服务 执行特定功能的服务，比如认证鉴权、商品列表、订单交易等，应用服务一般是对内服务
 type Service struct {
 	BaseModel
 	// 服务名称
@@ -119,5 +121,25 @@ type Service struct {
 	// 部署目录
 	DeployDir string `gorm:"column:deploy_dir;type:varchar(256)" json:"deploy_dir"`
 	// 服务监控地址
+	MonitorURL string `gorm:"column:monitor_url;type:varchar(256)" json:"monitor_url"`
+}
+
+// App for application 应用是具有完整业务逻辑的一个或一组服务
+// 应用一般是对外的服务，比如合作方的一个页面就属于一个应用，为某个客户端直接提供服务的也属于一个应用
+type App struct {
+	BaseModel
+	// 应用名称
+	Name string `gorm:"column:name;type:varchar(256)" json:"name"`
+	// 应用地址
+	URL string `gorm:"column:url;type:varchar(256)" json:"url"`
+	// 应用功能描述
+	Desc string `gorm:"column:desc;type:varchar(512)" json:"desc"`
+	// 是否核心链路
+	IsImportant uint `gorm:"column:is_important;type:tinyint(11):default:0" json:"is_important"`
+	// 仓库地址
+	RepositoryURL string `gorm:"column:repository_url;type:varchar(256)" json:"repository_url"`
+	// 部署目录
+	DeployDir string `gorm:"column:deploy_dir;type:varchar(256)" json:"deploy_dir"`
+	// 应用监控地址
 	MonitorURL string `gorm:"column:monitor_url;type:varchar(256)" json:"monitor_url"`
 }

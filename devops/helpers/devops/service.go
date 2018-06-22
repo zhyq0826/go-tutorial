@@ -28,7 +28,7 @@ func CreateService(form resources.ServiceForm) {
 
 // UpdateService update
 func UpdateService(id int, form resources.ServiceForm) {
-	service := model.Domain{
+	service := model.Service{
 		BaseModel: model.BaseModel{
 			ID: id,
 		},
