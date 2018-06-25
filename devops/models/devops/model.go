@@ -110,7 +110,7 @@ type Service struct {
 	BaseModel
 	// 服务名称
 	Name string `gorm:"column:name;type:varchar(256)" json:"name"`
-	// 服务地址
+	// 服务地址(对内或对外)
 	URL string `gorm:"column:url;type:varchar(256)" json:"url"`
 	// 服务功能描述
 	Desc string `gorm:"column:desc;type:varchar(512)" json:"desc"`
@@ -130,7 +130,7 @@ type App struct {
 	BaseModel
 	// 应用名称
 	Name string `gorm:"column:name;type:varchar(256)" json:"name"`
-	// 应用地址
+	// 应用地址(对内或对外)
 	URL string `gorm:"column:url;type:varchar(256)" json:"url"`
 	// 应用功能描述
 	Desc string `gorm:"column:desc;type:varchar(512)" json:"desc"`
