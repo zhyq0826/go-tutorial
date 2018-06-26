@@ -13,7 +13,7 @@ import (
 
 // InitRoutes init domain app route
 func InitRoutes(router *mux.Router) *mux.Router {
-	appRouter := router.PathPrefix("/app").Subrouter()
+	appRouter := router.PathPrefix("/v1/app").Subrouter()
 	appRouter.HandleFunc("/list", getApps).Methods("GET")
 	appRouter.HandleFunc("/create", createApp).Methods("POST")
 	appRouter.HandleFunc("/{id:[0-9]+}", updateApp).Methods("PUT")

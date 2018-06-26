@@ -13,6 +13,7 @@ import (
 
 func main() {
 	router := apps.InitRouter()
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	handler := handlers.LoggingHandler(os.Stdout, router)
 	server := &http.Server{
 		Addr:    "127.0.0.1:8000",

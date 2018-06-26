@@ -12,7 +12,7 @@ import (
 )
 
 var computerClient = RequestClient{
-	HOST:        "http://127.0.0.1:8000",
+	HOST:        "http://127.0.0.1:8000/v1",
 	Prefix:      "/computer",
 	ContentType: "application/json",
 }

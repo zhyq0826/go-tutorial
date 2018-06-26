@@ -12,7 +12,7 @@ import (
 
 // InitRoutes init domain app route
 func InitRoutes(router *mux.Router) *mux.Router {
-	appRouter := router.PathPrefix("/consul").Subrouter()
+	appRouter := router.PathPrefix("/v1/consul").Subrouter()
 	appRouter.HandleFunc("/service/all", getAllService).Methods("GET")
 	appRouter.HandleFunc("/service/list", getService).Methods("GET")
 	return router

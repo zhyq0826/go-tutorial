@@ -12,7 +12,7 @@ import (
 )
 
 var domainClient = RequestClient{
-	HOST:        "http://127.0.0.1:8000",
+	HOST:        "http://127.0.0.1:8000/v1",
 	Prefix:      "/domain",
 	ContentType: "application/json",
 }
