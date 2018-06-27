@@ -1,6 +1,7 @@
-package domain
+package home
 
 import (
+	"html/template"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -15,5 +16,6 @@ func InitRoutes(router *mux.Router) *mux.Router {
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
-
+	t := template.Must(template.ParseFiles("templates/index.html"))
+	t.Execute(w, "hello world")
 }
