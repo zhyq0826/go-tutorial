@@ -3,6 +3,8 @@
   "dependencies": {
     "ember-qunit-notifications": "~0.1.0",
     "highlightjs": "~9.2.0",
-    "semantic": "^2.3.2"
+    "semantic": "^2.3.2",
+    "moment": "^2.22.2",
+    "pikaday": "^1.6.1"
   }
 }
