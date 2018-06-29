@@ -26,20 +26,22 @@
         </div>              
     </div>
     <div class="fourteen wide column">
-        <div class="row">
-            <div class="ui large menu">
-                <a class="item js-item-siderbar" >
-                    <i class="icon th"></i>
-                </a>
-                <div class="ui category search item">
-                    <div class="ui transparent icon input">
-                      <input class="prompt" type="text" placeholder="Search animals...">
-                      <i class="search link icon"></i>
+        <div class="ui grid">
+            <div class="row" >
+                <div class="ui large menu">
+                    <a class="item js-item-siderbar" >
+                        <i class="icon th"></i>
+                    </a>
+                    <div class="ui category search item">
+                        <div class="ui transparent icon input">
+                        <input class="prompt" type="text" placeholder="Search animals...">
+                        <i class="search link icon"></i>
+                        </div>
+                        <div class="results"></div>
                     </div>
-                    <div class="results"></div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-top:20px;" >
                 {{outlet}}
             </div>
         </div>
