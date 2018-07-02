@@ -14,13 +14,13 @@ export default EmberObject.extend(model, {
     init(){
         this._super(...arguments);
         this.model = {
-            'name': attr('string'),
-            'ip':  attr({defaultValue: function(){
+            name: attr('string'),
+            ip:  attr({defaultValue: function(){
                 return A();
             }}),
-            'host': attr('string'),
-            'created_at': attr('string'),
-            'updated_at': attr('string')
+            host: attr('string'),
+            created_at: attr('string'),
+            updated_at: attr('string')
         }
     }
 });

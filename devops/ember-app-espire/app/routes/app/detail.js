@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
-import Ember from 'ember';
+import { hash } from 'rsvp';
 
 export default Route.extend({
     model(params){
-        return Ember.RSVP.hash({
+        return hash({
             app: this.store.findOne('app', params.id),
             computer: this.store.find('computer', {appid: params.id})
         });
