@@ -34,12 +34,18 @@ func UpdateComputer(id int, form resources.ComputerForm) {
 }
 
 // QueryComputer computer list
-func QueryComputer(page, limit int) []model.Computer {
+func QueryComputer(page, limit, appid int) []model.Computer {
 	if limit == 0 {
 		limit = 10
 	}
+	conditon := make([]interface{}, 0)
+	query := ""
+	if appid != 0 {
+		query += "app_id = ?"
+		conditon = append(conditon, appid)
+	}
 	ret := make([]model.Computer, limit)
-	db.DB.Where("").Limit(limit).Offset((page - 1) * limit).Find(&ret)
+	db.DB.Where(query, conditon...).Limit(limit).Offset((page - 1) * limit).Find(&ret)
 
 	return ret
 }

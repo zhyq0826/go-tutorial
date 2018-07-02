@@ -16,6 +16,7 @@ func InitRoutes(router *mux.Router) *mux.Router {
 	appRouter := router.PathPrefix("/v1/app").Subrouter()
 	appRouter.HandleFunc("/list", getApps).Methods("GET")
 	appRouter.HandleFunc("/create", createApp).Methods("POST")
+	appRouter.HandleFunc("/{id:[0-9]+}", oneApp).Methods("GET")
 	appRouter.HandleFunc("/{id:[0-9]+}", updateApp).Methods("PUT")
 	appRouter.HandleFunc("/{id:[0-9]+}", deleteApp).Methods("DELETE")
 	return router
@@ -70,6 +71,19 @@ func updateApp(w http.ResponseWriter, r *http.Request) {
 		log.Println("convert id to fails")
 	}
 	helper.UpdateApp(id, dataSource)
+}
+
+func oneApp(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		log.Println("convert id to fails")
+	}
+	ret := helper.QueryOneApp(id)
+	jsonData, _ := json.Marshal(ret)
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonData)
 }
 
 // deleteApp handle

@@ -64,6 +64,13 @@ func QueryApp(page, limit int, name, url string) []model.App {
 	return ret
 }
 
+// QueryOneApp for query one app
+func QueryOneApp(id int) model.App {
+	app := model.App{}
+	db.DB.Where("id = ?", id).First(&app)
+	return app
+}
+
 // DeleteApp app delete
 func DeleteApp(id int) {
 	db.DB.Delete(&model.App{}, "id = ?", id)

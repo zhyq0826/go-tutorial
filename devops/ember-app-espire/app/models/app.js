@@ -10,5 +10,8 @@ const {
 
 
 export default EmberObject.extend(model, {
-    url: "/v1/app/list",
+    url: "/v1/app",
+    urlForFind: function() {
+        return this.get('api') + '/list';
+    },
 });

@@ -27,7 +27,7 @@ func InitRoutes(router *mux.Router) *mux.Router {
 // getComputers computer list handle
 func getComputers(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
-	var skip, limit = 0, 10
+	var skip, limit, appid = 0, 10, 0
 	var err error
 	if q.Get("skip") != "" {
 		skip, err = strconv.Atoi(q.Get("skip"))
@@ -43,7 +43,14 @@ func getComputers(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	ret := helper.QueryComputer(skip, limit)
+	if q.Get("appid") != "" {
+		appid, err = strconv.Atoi(q.Get("appid"))
+		if err != nil {
+			log.Println("appid parse error")
+		}
+	}
+
+	ret := helper.QueryComputer(skip, limit, appid)
 	// var dataSource []resources.ComputerForm
 	// for _, v := range ret {
 	// 	vv := v
