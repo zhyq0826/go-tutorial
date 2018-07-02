@@ -10,9 +10,9 @@ import model, {
     DS
 } from 'ember-easy-orm/mixins/model';
 
-model.reopen({
-    dataRootKey: 'res'
-});
+// model.reopen({
+//     dataRootKey: 'res'
+// });
 
 export {
     DS
@@ -35,6 +35,7 @@ export default Mixin.create(model, {
                 throw String(data.msg);
             }
         } else {
+            return data;
             if (data) {
                 get(this, 'flashMessages').warning(data);
             }

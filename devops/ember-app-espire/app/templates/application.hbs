@@ -1,5 +1,30 @@
-<div class="ui grid">
-    <div class="two wide column">
+<div class="ui attached stackable menu">
+  <div class="ui container">
+    <a class="item">
+      <i class="home icon"></i> Home
+    </a>
+    {{!-- <a class="item">
+      <i class="grid layout icon"></i> Browse
+    </a>
+    <a class="item">
+      <i class="mail icon"></i> Messages
+    </a>
+    <div class="ui simple dropdown item">
+      More
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item"><i class="edit icon"></i> Edit Profile</a>
+        <a class="item"><i class="globe icon"></i> Choose Language</a>
+        <a class="item"><i class="settings icon"></i> Account Settings</a>
+      </div>
+    </div>
+    <div class="right item">
+      <div class="ui input"><input type="text" placeholder="Search..."></div>
+    </div> --}}
+  </div>
+</div>
+<div class="ui grid" style="margin-top:0" >
+    <div class="three wide column" style="width:240px !important" >
         <div class="ui vertical menu" >
             <a href="" class="item">
                 <h2 class="ui green header">
@@ -25,9 +50,9 @@
             {{/link-to}}
         </div>              
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
         <div class="ui grid">
-            <div class="row" >
+            {{!-- <div class="row" >
                 <div class="ui large menu">
                     <a class="item js-item-siderbar" >
                         <i class="icon th"></i>
@@ -40,8 +65,8 @@
                         <div class="results"></div>
                     </div>
                 </div>
-            </div>
-            <div class="row" style="padding-top:20px;" >
+            </div> --}}
+            <div class="row">
                 {{outlet}}
             </div>
         </div>

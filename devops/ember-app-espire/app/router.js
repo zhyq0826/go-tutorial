@@ -10,7 +10,9 @@ Router.map(function() {
   this.route('domain');
   this.route('computer');
   this.route('app', function() {
-    this.route('detail');
+    this.route('detail', function() {
+      this.route('tags');
+    });
   });
 });
 

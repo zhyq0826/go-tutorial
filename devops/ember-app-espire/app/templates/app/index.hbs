@@ -12,20 +12,26 @@
         </tr>
       </thead>
       <tbody>
+        {{#each model as |rd|}}
         <tr>
-          <td>v12</td>
-          <td>v3 api</td>
-          <td>http://git.shequan.com/background/v12</td>
-          <td>/home/ubuntu/workerspace/v12</td>
-          <td>zabbix.host.com/app/v12</td>
-          <td class="positive">Ok</td>
-          <td>2018-1-1 12:00:00</td>
+          <td>{{rd.name}}</td>
+          <td>{{rd.desc}}</td>
+          <td>
+            <a href="{{rd.repository_url}}" alt="{{rd.repository_url}}" >
+              {{rd.name}}
+            </a>
+          </td>
+          <td>{{rd.deploy_dir}}</td>
+          <td>{{rd.monitor_url}}</td>
+          <td class="positive">ok</td>
+          <td>{{rd.created_at}}</td>
           <td>
               {{#link-to "app.detail" class="ui tiny small basic green button" }}详情{{/link-to}}
               {{!-- {{#ui-button class="tiny small basic green" }}部署{{/ui-button}}
               {{#ui-button class="tiny small basic blue" }}扩容{{/ui-button}} --}}
           </td>
         </tr>
+        {{/each}}
         <tr>
           <td>martin_restful</td>
           <td>v2 api</td>
@@ -36,36 +42,6 @@
           <td>2018-1-1 12:00:00</td>
           <td>
               {{#link-to "app.detail" class="ui tiny small basic green button" }}详情{{/link-to}}
-              {{#ui-button class="tiny small basic green" }}部署{{/ui-button}}
-              {{#ui-button class="tiny small basic blue" }}扩容{{/ui-button}}
-          </td>
-        </tr>
-        <tr>
-          <td>martin_worker</td>
-          <td>v2 api</td>
-          <td>http://git.shequan.com/background/martin_restful</td>
-          <td>/home/ubuntu/workerspace/martin_restful</td>
-          <td>zabbix.host.com/app/martin_restful</td>
-          <td class="positive">Ok</td>
-          <td>2018-1-1 12:00:00</td>
-          <td>
-              {{#link-to "app.detail" class="ui tiny small basic green button" }}详情{{/link-to}}
-              {{#ui-button class="tiny small basic green" }}部署{{/ui-button}}
-              {{#ui-button class="tiny small basic blue" }}扩容{{/ui-button}}
-          </td>
-        </tr>
-        <tr>
-          <td>oil_helper</td>
-          <td>oil helper</td>
-          <td>http://git.shequan.com/background/oil_helper</td>
-          <td>/home/ubuntu/workerspace/oil_helper</td>
-          <td>zabbix.host.com/app/martin_restful</td>
-          <td class="positive">Ok</td>
-          <td>2018-1-1 12:00:00</td>
-          <td>
-              {{#link-to "app.detail" class="ui tiny small basic green button" }}详情{{/link-to}}
-              {{#ui-button class="tiny small basic green" }}部署{{/ui-button}}
-              {{#ui-button class="tiny small basic blue" }}扩容{{/ui-button}}
           </td>
         </tr>
       </tbody>

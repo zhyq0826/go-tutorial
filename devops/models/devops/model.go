@@ -82,10 +82,14 @@ func (Domain) TableName() string {
 // Computer 机器
 type Computer struct {
 	BaseModel
-	CPU       uint   `gorm:"column:cpu;type:int(11);default:0" json:"cpu"`
-	RAM       uint   `gorm:"column:ram;type:int(11);default:0" json:"ram"`
-	PrivateIP string `gorm:"column:private_ip;type:varchar(256):default:''" json:"private_ip"`
-	PublicIP  string `gorm:"column:public_ip;type:varchar(256):default:''" json:"public_ip"`
+	CPU  uint   `gorm:"column:cpu;type:int(11);default:0" json:"cpu"`
+	RAM  uint   `gorm:"column:ram;type:int(11);default:0" json:"ram"`
+	Tag  string `gorm:"column:tag;type:varchar(32):default:''" json:"tag"`
+	Name string `gorm:"column:name;type:varchar(32):default:''" json:"name"`
+	// 云平台资源 id
+	HostID    string `gorm:"column:host_id;type:varchar(32):default:''" json:"host_id"`
+	PrivateIP string `gorm:"column:private_ip;type:varchar(32):default:''" json:"private_ip"`
+	PublicIP  string `gorm:"column:public_ip;type:varchar(32):default:''" json:"public_ip"`
 	// 服务 id 一般来说一台机器最好部署单一的服务
 	ServiceID uint `gorm:"column:service_id;type:int(11);default:0" json:"service_id"`
 	AppID     uint `gorm:"column:app_id;type:int(11);default:0" json:"app_id"`

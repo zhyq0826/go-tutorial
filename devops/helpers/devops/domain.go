@@ -9,11 +9,12 @@ import (
 )
 
 // CreateDomain create
-func CreateDomain(name, host string, private uint) {
+func CreateDomain(name, host string, private uint, ip model.JSON) {
 	domain := model.Domain{
 		Name:    name,
 		Host:    host,
 		Private: private,
+		IP: ip,
 	}
 	now := time.Now()
 	domain.UpdatedAt = now

@@ -61,7 +61,7 @@ func createDomain(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 	}
-	helper.CreateDomain(dataSource.Name, dataSource.Host, dataSource.Private)
+	helper.CreateDomain(dataSource.Name, dataSource.Host, dataSource.Private, dataSource.IP)
 }
 
 // updateDomain handle

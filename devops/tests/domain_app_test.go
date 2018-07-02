@@ -39,6 +39,7 @@ func TestDomainCreate(t *testing.T) {
 			Name:    "i am name",
 			Host:    "i am url",
 			Private: 1,
+			IP: []byte(`["10.10.245.10"]`),
 		},
 	}
 	data, _ := json.Marshal(form)

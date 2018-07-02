@@ -1,7 +1,7 @@
 create table `domain` (
-    id int(11) not null AUTO_INCREMENT primary key,
-    created_at datetime not null,
-    updated_at datetime not null,
+    `id` int(11) not null AUTO_INCREMENT primary key,
+    `created_at` datetime not null,
+    `updated_at` datetime not null,
     `name` varchar(256) not null default '',
     `host` varchar(256) not null default '',
     `ip` json not null default '',
@@ -10,13 +10,17 @@ create table `domain` (
 
 create table `computer` (
     id int(11) not null AUTO_INCREMENT primary key,
-    created_at datetime not null,
-    updated_at datetime not null,
+    `name` varchar(32) not null default '',
+    `tag` varchar(32) not null default '',
     cpu int(11) not null  default 0,
     ram int(11) not null  default 0,
+    `host_id` varchar(32) not null default '',
     service_id int(11) not null  default 0,
+    app_id int(11) not null  default 0,
     private_ip varchar(32) not null default '',
     public_ip varchar(32) not null default ''
+    created_at datetime not null,
+    updated_at datetime not null
 );
 
 create table `disk` (
@@ -30,6 +34,20 @@ create table `disk` (
 
 
 create table `service` (
+    id int(11) not null AUTO_INCREMENT primary key,
+    is_important int(11) not null default 0,
+    name varchar(32) not null default '',
+    url varchar(256) not null default '',
+    `desc` varchar(512) not null default '',
+    repository_url varchar(512) not null default '',
+    deploy_dir varchar(512) not null default '',
+    monitor_url varchar(512) not null default '',
+    created_at datetime not null,
+    updated_at datetime not null
+);
+
+
+create table `app` (
     id int(11) not null AUTO_INCREMENT primary key,
     is_important int(11) not null default 0,
     name varchar(32) not null default '',

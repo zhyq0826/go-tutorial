@@ -1,4 +1,4 @@
-<div class="four wide column">
+<div class="four wide column" style="padding-left:0" >
     <div class="ui blue segment">
         <h4 class="ui center aligned header">
             基本信息
@@ -77,10 +77,9 @@
         </table>
     </div>
 </div>
-<div class="twelve wide column">
-    <div class="ui secondary menu">
-        <a class="item">current</a>
-        <a class="item">tags</a>
-        <a class="item">history</a>
+<div class="twelve wide column" >
+    <div class="ui secondary orange menu">
+        {{#link-to "app.detail.tags" class="item" }}tags{{/link-to}}
     </div>
+    {{outlet}}
 </div>

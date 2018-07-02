@@ -4,21 +4,21 @@
           <th>域名</th>
           <th>名称</th>
           <th>绑定的 ip</th>
-          <th>备注</th>
           <th>状态</th>
           <th>创建时间</th>
         </tr>
       </thead>
       <tbody>
+        {{#each model  as |record|}}
         <tr>
-          <td>api.host.com</td>
-          <td>api</td>
-          <td>178.10.21.9</td>
-          <td>客户端 API 服务</td>
+          <td>{{record.host}}</td>
+          <td>{{record.name}}</td>
+          <td>{{record.ip}}</td>
           {{!-- 结合 consul --}}
           <td class="positive" >可用</td>
-          <td>2018-1-1 12:00:00</td>
+          <td>{{record.created_at}}</td>
         </tr>
+        {{/each}}
         <tr>
             <td>api.host.com</td>
             <td>api</td>
