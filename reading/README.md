@@ -126,4 +126,3 @@ chrome.exe --save-as-pdf=<url> --output-file=<path-to-file> --pdf-format=A3 --pd
 
 - https://blog.rubylearning.com/best-practices-for-a-new-go-developer-8660384302fc
 - https://talks.golang.org/2013/bestpractices.slide#1
-
