@@ -15,11 +15,14 @@ func main() {
 	viper.SetDefault("GITLAB_TOKEN", "")
 	viper.SetDefault("LOG_PATH", "devops.log")
 
-	viper.SetConfigName("config")         // name of config file (without extension)
+	viper.SetConfigName("config.json")    // name of config file (without extension)
 	viper.AddConfigPath("/etc/")          // path to look for the config file in
 	viper.AddConfigPath("$HOME/.appname") // call multiple times to add many search paths
 	viper.AddConfigPath(".")              // optionally look for config in the working directory
-
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	consulAddress := viper.Get("CONSUL_ADDRESS")
 	fmt.Println(consulAddress)
 	databaseUser := viper.Get("DATABASE_USER")
