@@ -12,8 +12,8 @@ var (
 )
 
 func Balance() int {
-	fmt.Println("balance wait for another goroutine release lock")
 	mu.Lock()
+	fmt.Println("balance wait for another goroutine release lock")
 	defer mu.Unlock()
 	return balance
 }
@@ -51,6 +51,7 @@ func main() {
 		fmt.Println("balance 2 == >", Balance2())
 		wait <- 1
 	}()
+	time.Sleep(1*time.Second)
 	fmt.Println("balance ==>", Balance())
 	<-wait
 }
