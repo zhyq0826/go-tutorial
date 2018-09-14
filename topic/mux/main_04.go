@@ -7,21 +7,24 @@ import (
 )
 
 var (
-	mu      sync.Mutex
+	mu      sync.RWMutex
 	balance int
 )
 
 func Balance() int {
-	mu.Lock()
-	fmt.Println("balance wait for another goroutine release lock")
-	defer mu.Unlock()
+	fmt.Println("Balance wait for another goroutine release lock")
+	mu.RLock()
+	fmt.Println("Balance acquired lock")
+	defer mu.RUnlock()
 	return balance
 }
 
 func Balance2() int {
-	mu.Lock()
-	defer mu.Unlock()
+	mu.RLock()
+	fmt.Println("Balance2 acquired lock")
+	defer mu.RUnlock()
 	time.Sleep(10 * time.Second)
+	fmt.Println("Balance2 release lock")
 	return balance
 }
 
@@ -48,10 +51,10 @@ func main() {
 	balance = 100
 	wait := make(chan int)
 	go func() {
-		fmt.Println("balance 2 == >", Balance2())
+		fmt.Println("Balance2 == >", Balance2())
 		wait <- 1
 	}()
-	time.Sleep(1*time.Second)
-	fmt.Println("balance ==>", Balance())
+	time.Sleep(2 * time.Second)
+	fmt.Println("Balance ==>", Balance())
 	<-wait
 }
