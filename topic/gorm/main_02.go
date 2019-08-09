@@ -37,9 +37,9 @@ type Domain struct {
 }
 
 // TableName
-func (Domain) TableName() string {
-	return "domain"
-}
+// func (Domain) TableName() string {
+// 	return "domain"
+// }
 
 func main() {
 	initDB()

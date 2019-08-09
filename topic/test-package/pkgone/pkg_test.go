@@ -1,7 +1,6 @@
 package pkgone
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -20,7 +19,7 @@ func TestSum2(t *testing.T) {
 	}
 }
 
-func TestMain(t *testing.M) {
-	fmt.Println("hello main")
-	t.Run()
-}
+// func TestMain(t *testing.M) {
+// 	fmt.Println("hello main")
+// 	t.Run()
+// }
